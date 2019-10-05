@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+export class FileNode {
+  children: FileNode[];
+  filename: string;
+  type: any;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +13,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ClientApp';
+
+  
 }
