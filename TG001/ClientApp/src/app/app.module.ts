@@ -12,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import {MatTreeModule, MatIconModule, MatButtonModule} from '@angular/material';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -34,7 +35,12 @@ import { NavItemComponent } from './nav-item/nav-item.component';
     MatListModule,
     MatTreeModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+  
+    RouterModule.forRoot([
+      { path: 'boletos', component: GerenciarBoletosComponent},
+      { path: 'conta', component: TelaContaComponent },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
