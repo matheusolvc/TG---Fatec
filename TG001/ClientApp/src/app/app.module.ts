@@ -13,6 +13,9 @@ import { MatListModule } from '@angular/material/list';
 import {MatTreeModule, MatIconModule, MatButtonModule} from '@angular/material';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { RouterModule } from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { RouterModule } from '@angular/router';
     MatTreeModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   
     RouterModule.forRoot([
       { path: 'boletos', component: GerenciarBoletosComponent},

@@ -1,6 +1,6 @@
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {Component} from '@angular/core';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { Component } from '@angular/core';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 /**
  * Food data with nested structure.
@@ -8,35 +8,18 @@ import {MatTreeNestedDataSource} from '@angular/material/tree';
  */
 interface FoodNode {
   name: string;
+  url?: string;
   children?: FoodNode[];
 }
 
 const TREE_DATA: FoodNode[] = [
   {
-    name: 'Fruit',
+    name: 'Contas',
     children: [
-      {name: 'Apple'},
-      {name: 'Banana'},
-      {name: 'Fruit loops'},
+      { name: 'Boletos', url: 'boletos' },
+      { name: 'Impostos', url: 'impostos' },
     ]
-  }, {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [
-          {name: 'Broccoli'},
-          {name: 'Brussel sprouts'},
-        ]
-      }, {
-        name: 'Orange',
-        children: [
-          {name: 'Pumpkins'},
-          {name: 'Carrots'},
-        ]
-      },
-    ]
-  },
+  }
 ];
 
 /**
@@ -48,7 +31,7 @@ const TREE_DATA: FoodNode[] = [
   templateUrl: './nav-item.component.html',
   styleUrls: ['./nav-item.component.css']
 })
-export class NavItemComponent  {
+export class NavItemComponent {
 
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
