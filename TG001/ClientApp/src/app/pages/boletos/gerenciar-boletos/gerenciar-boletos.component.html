@@ -7,68 +7,87 @@
         <button mat-raised-button color="warn">Excluir</button>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
+        </button>
+        <mat-menu #menu="matMenu">
             <button mat-menu-item>
-              <mat-icon>dialpad</mat-icon>
-              <span>Redial</span>
+                <mat-icon>dialpad</mat-icon>
+                <span>Redial</span>
             </button>
             <button mat-menu-item disabled>
-              <mat-icon>voicemail</mat-icon>
-              <span>Check voice mail</span>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voice mail</span>
             </button>
             <button mat-menu-item>
-              <mat-icon>notifications_off</mat-icon>
-              <span>Disable alerts</span>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Disable alerts</span>
             </button>
-          </mat-menu>
+        </mat-menu>
     </mat-toolbar>
     <div class="example-container">
-        <mat-form-field>
-            <input matInput placeholder="ID Conta">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Status">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="CNPJ">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Período apuração">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Código imposto">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Código de barras">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Nº Documento">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Série">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Data de emissão">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Data de vencimento">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Tipo do documento">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Valor do documento">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Multa">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Juros">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Valor a pagar" required>
-        </mat-form-field>
+        <div class="row">
+            <mat-form-field class="col-md-6">
+                <input matInput placeholder="ID Conta">
+            </mat-form-field>
+            <mat-form-field class="col-md-6">
+                <input matInput placeholder="Status">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="ID Fornecedor">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-md-4">
+                <input matInput placeholder="CNPJ">
+            </mat-form-field>
+            <mat-form-field class="col-md-8">
+                <input matInput placeholder="Razão social">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="col-md-6">
+                <input matInput placeholder="Nº Documento">
+            </mat-form-field>
+            <mat-form-field class="col-md-6">
+                <input matInput placeholder="Série">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="Data de emissão">
+            </mat-form-field>
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="Data de vencimento">
+            </mat-form-field>
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="Tipo do documento">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="Valor do documento">
+            </mat-form-field>
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="Multa">
+            </mat-form-field>
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="Juros">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="col-md-3">
+                <input matInput placeholder="Valor a pagar">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-md-12">
+                <input matInput placeholder="Código de barras">
+            </mat-form-field>
+        </div>
     </div>
 
 </mat-card>
