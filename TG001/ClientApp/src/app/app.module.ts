@@ -10,13 +10,19 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { MatTreeModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MainBoletosComponent } from './pages/boletos/main-boletos/main-boletos.component';
+import { GerenciarImpostosComponent } from './pages/impostos/gerenciar-impostos/gerenciar-impostos.component';
+import { MainImpostosComponent } from './pages/impostos/main-impostos/main-impostos.component';
+import { MainOutrasComponent } from './pages/outras/main-outras/main-outras.component';
+import { GerenciarOutrasComponent } from './pages/outras/gerenciar-outras/gerenciar-outras.component';
+import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.component';
 
 
 @NgModule({
@@ -25,7 +31,13 @@ import { MatMenuModule } from '@angular/material/menu';
     GerenciarBoletosComponent,
     TelaContaComponent,
     MainNavComponent,
-    NavItemComponent
+    NavItemComponent,
+    MainBoletosComponent,
+    GerenciarImpostosComponent,
+    MainImpostosComponent,
+    MainOutrasComponent,
+    GerenciarOutrasComponent,
+    MigrarContasComponent
   ],
   imports: [
     BrowserModule,
@@ -44,11 +56,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-
-    RouterModule.forRoot([
-      { path: 'boletos', component: GerenciarBoletosComponent },
-      { path: 'conta', component: TelaContaComponent },
-    ])
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

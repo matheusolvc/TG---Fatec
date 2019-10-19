@@ -3,9 +3,10 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="Boletos">Boletos</a>
-      <a mat-list-item routerLink="Contas">Contas</a>
-      <app-nav-item></app-nav-item>
+      <a mat-list-item routerLink="contas">Contas</a>
+      <a mat-list-item routerLink="Contas">Pagar contas</a>
+      <a mat-list-item routerLink="Boletos">Reembolsos</a>
+      <a mat-list-item routerLink="Boletos">Controle de despesas</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

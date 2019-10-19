@@ -1,0 +1,17 @@
+<div class="row d-flex justify-content-center align-items-center">
+    <mat-form-field class="col-md-3">
+        <input matInput [matDatepicker]="dtIni" placeholder="Data inicial">
+        <mat-datepicker-toggle matSuffix [for]="dtIni"></mat-datepicker-toggle>
+        <mat-datepicker #dtIni></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="col-md-4">
+        <input matInput [matDatepicker]="dtFim" placeholder="Data final">
+        <mat-datepicker-toggle matSuffix [for]="dtFim"></mat-datepicker-toggle>
+        <mat-datepicker #dtFim></mat-datepicker>
+    </mat-form-field>
+    <div class="col-md-3">
+        <button mat-raised-button><mat-icon aria-hidden="false" aria-label="import_export icon">import_export</mat-icon>
+            Migrar dados
+        </button>
+    </div>
+</div>

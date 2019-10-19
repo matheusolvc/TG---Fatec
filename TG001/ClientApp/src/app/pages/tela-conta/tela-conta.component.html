@@ -1,4 +1,26 @@
-<mat-card class="conta-card" routerLink="Boletos">Boletos</mat-card>
-<mat-card class="conta-card">Simple card</mat-card>
-<mat-card class="conta-card">Simple card</mat-card>
-<mat-card class="conta-card">Simple card</mat-card>
+<div class="row col-12 d-flex align-items-center justify-content-center">
+    <mat-card class="col-md-4 conta-card" routerLink="boletos">
+        <mat-card-header>
+            <mat-icon mat-card-avatar aria-hidden="false" aria-label="import_export icon">receipt</mat-icon>
+            <mat-card-title>Boletos</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    <mat-card class="col-md-4 conta-card" routerLink="impostos">
+        <mat-card-header>
+            <mat-icon mat-card-avatar aria-hidden="false" aria-label="import_export icon">attach_money</mat-icon>
+            <mat-card-title>Impostos</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    <mat-card class="col-md-4 conta-card" routerLink="outras">
+        <mat-card-header>
+            <mat-icon mat-card-avatar aria-hidden="false" aria-label="import_export icon">list_alt</mat-icon>
+            <mat-card-title>Outras contas</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    <mat-card class="col-md-4 conta-card" routerLink="migrar">
+        <mat-card-header>
+            <mat-icon mat-card-avatar aria-hidden="false" aria-label="import_export icon">import_export</mat-icon>
+            <mat-card-title>Migrar notas fiscais</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+</div>
