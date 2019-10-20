@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TG001", "TG001\TG001.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TG001.Models", "TG001.Models\TG001.Models.csproj", "{03A0B5C1-2BEC-4606-8426-222B1C447D45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TG001.Repo", "TG001.Repo\TG001.Repo.csproj", "{3A07A6FE-3752-4799-ACD1-C9679DA2CB9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TG001.Repo", "TG001.Repo\TG001.Repo.csproj", "{3A07A6FE-3752-4799-ACD1-C9679DA2CB9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

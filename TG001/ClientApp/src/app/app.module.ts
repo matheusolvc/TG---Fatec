@@ -12,7 +12,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { NavItemComponent } from './nav-item/nav-item.component';
-import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +22,8 @@ import { MainImpostosComponent } from './pages/impostos/main-impostos/main-impos
 import { MainOutrasComponent } from './pages/outras/main-outras/main-outras.component';
 import { GerenciarOutrasComponent } from './pages/outras/gerenciar-outras/gerenciar-outras.component';
 import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.compo
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -58,7 +60,7 @@ import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.compo
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
