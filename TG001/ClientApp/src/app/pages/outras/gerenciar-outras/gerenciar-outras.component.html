@@ -1,68 +1,75 @@
-<mat-card class="boleto-card">
+<form #GerenciarBoletos="ngForm">
+
+  <mat-card class="outras-card">
     <div class="example-container">
-        <div class="row">
-            <mat-form-field class="col-md-6">
-                <input matInput placeholder="ID Conta">
-            </mat-form-field>
-            <mat-form-field class="col-md-6">
-                <input matInput placeholder="Status">
-            </mat-form-field>
-        </div>
-        <div class="row">
-            <mat-form-field class="col-md-3">
-                <input matInput placeholder="ID Fornecedor">
-            </mat-form-field>
-        </div>
-        <div class="row">
-            <mat-form-field class="col-md-4">
-                <input matInput placeholder="CNPJ">
-            </mat-form-field>
-            <mat-form-field class="col-md-8">
-                <input matInput placeholder="Razão social">
-            </mat-form-field>
-        </div>
+      <div class="row">
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="ID da Conta" id="ID" [(ngModel)]="model.ID" name="ID">
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="Status" id="Status" [(ngModel)]="model.Status" name="Status">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-3">
+          <input matInput placeholder="ID Fornecedor" [(ngModel)]="model.IDFornecedor" name="IDFornecedor">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-4">
+          <input matInput placeholder="CNPJ" [(ngModel)]="model.CNPJ" name="CNPJ">
+        </mat-form-field>
+        <mat-form-field class="col-md-8">
+          <input matInput placeholder="Razão social" [(ngModel)]="model.RazaoSocial" name="RazaoSocial">
+        </mat-form-field>
+      </div>
 
-        <div class="row">
-            <mat-form-field class="col-md-6">
-                <input matInput placeholder="Nº Documento">
-            </mat-form-field>
-            <mat-form-field class="col-md-6">
-                <input matInput placeholder="Série">
-            </mat-form-field>
-        </div>
-        <div class="row">
-            <mat-form-field class="col-md-3">
-                <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão">
-                <mat-datepicker-toggle matSuffix [for]="pickerEm"></mat-datepicker-toggle>
-                <mat-datepicker #pickerEm></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="col-md-4">
-                <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento">
-                <mat-datepicker-toggle matSuffix [for]="pickerVc"></mat-datepicker-toggle>
-                <mat-datepicker #pickerVc></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="col-md-3">
-                <input matInput placeholder="Tipo do documento">
-            </mat-form-field>
-        </div>
+      <div class="row">
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="Nº Documento" [(ngModel)]="model.NumDocumento" name="NumDocumento">
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="Série">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-3">
+          <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão" [(ngModel)]="model.DataEmissao" name="DataEmissao">
+          <mat-datepicker-toggle matSuffix [for]="pickerEm"></mat-datepicker-toggle>
+          <mat-datepicker #pickerEm></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento" [(ngModel)]="model.DataVencimento" name="DataVencimento">
+          <mat-datepicker-toggle matSuffix [for]="pickerVc"></mat-datepicker-toggle>
+          <mat-datepicker #pickerVc></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <input matInput placeholder="Tipo do documento" [(ngModel)]="model.TipoConta" name="TipoConta">
+        </mat-form-field>
+      </div>
 
-        <div class="row">
-            <mat-form-field class="col-md-3">
-                <input matInput placeholder="Valor do documento">
-            </mat-form-field>
-            <mat-form-field class="col-md-3">
-                <input matInput placeholder="Multa">
-            </mat-form-field>
-            <mat-form-field class="col-md-3">
-                <input matInput placeholder="Juros">
-            </mat-form-field>
-        </div>
+      <div class="row">
+        <mat-form-field class="col-md-3">
+          <input matInput placeholder="Valor do documento" [(ngModel)]="model.ValorDocumento" name="ValorDocumento">
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <input matInput placeholder="Multa" [(ngModel)]="model.Multa" name="Multa">
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <input matInput placeholder="Juros" [(ngModel)]="model.Juros" name="Juros">
+        </mat-form-field>
+      </div>
 
-        <div class="row">
-            <mat-form-field class="col-md-3">
-                <input matInput placeholder="Valor a pagar">
-            </mat-form-field>
-        </div>
+      <div class="row">
+        <mat-form-field class="col-md-3">
+          <input matInput placeholder="Valor a pagar" [(ngModel)]="model.ValorAPagar" name="ValorAPagar">
+        </mat-form-field>
+      </div>
     </div>
 
-</mat-card>
+  </mat-card>
+
+  <button mat-raised-button type="submit" (click)="Incluir()">Confirmar</button>
+  <button mat-raised-button type="reset">Cancelar</button>
+  <button mat-raised-button (click)="Voltar()">Voltar</button>
+</form>

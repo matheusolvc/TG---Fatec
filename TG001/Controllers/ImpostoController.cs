@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TG001.Models;
 using TG001.Repo.Contexto;
 
@@ -32,7 +31,7 @@ namespace TG001.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Imposto>> GetImposto(int id)
         {
-            var imposto = await _context.Impostos.FindAsync(id);
+            Imposto imposto = await _context.Impostos.FindAsync(id);
 
             if (imposto == null)
             {
@@ -76,7 +75,7 @@ namespace TG001.Controllers
         [HttpPost]
         public async Task<ActionResult<Imposto>> PostImposto(Imposto imposto)
         {
-            imposto.ID = _context.Impostos.ToList().Max(i => i.ID) + 1;
+            imposto.DataCriacao = DateTime.Now;
             _context.Impostos.Add(imposto);
             await _context.SaveChangesAsync();
 
@@ -87,7 +86,7 @@ namespace TG001.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Imposto>> DeleteImposto(int id)
         {
-            var imposto = await _context.Impostos.FindAsync(id);
+            Imposto imposto = await _context.Impostos.FindAsync(id);
             if (imposto == null)
             {
                 return NotFound();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TG001.Models
+﻿namespace TG001.Models
 {
     public class Usuario
     {
