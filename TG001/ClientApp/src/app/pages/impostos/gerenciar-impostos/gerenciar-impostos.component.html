@@ -11,15 +11,17 @@
       </div>
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="CNPJ" id="CNPJ" [(ngModel)]="model.CNPJ" name="CNPJ">
+          <input matInput placeholder="CNPJ" id="CNPJ" [(ngModel)]="model.CNPJ" name="CNPJ" required>
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
-          <input matInput placeholder="Período de apuração" id="PeriodoApuracao" [(ngModel)]="model.PeriodoApuracao" name="PeriodoApuracao">
+          <input matInput placeholder="Período de apuração" id="PeriodoApuracao" [(ngModel)]="model.PeriodoApuracao"
+            name="PeriodoApuracao">
         </mat-form-field>
         <mat-form-field class="col-md-8">
-          <input matInput placeholder="Código do imposto" id="CodigoImposto" [(ngModel)]="model.CodigoImposto" name="CodigoImposto">
+          <input matInput placeholder="Código do imposto" id="CodigoImposto" [(ngModel)]="model.CodigoImposto"
+            name="CodigoImposto">
         </mat-form-field>
       </div>
 
@@ -33,26 +35,33 @@
       </div>
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão" id="DataEmissao" [(ngModel)]="model.DataEmissao" name="DataEmissao">
+          <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão" id="DataEmissao"
+            [(ngModel)]="model.DataEmissao" name="DataEmissao">
           <mat-datepicker-toggle matSuffix [for]="pickerEm"></mat-datepicker-toggle>
           <mat-datepicker #pickerEm></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="col-md-4">
-          <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento" id="DataVencimento" [(ngModel)]="model.DataVencimento" name="DataVencimento">
+          <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento" id="DataVencimento"
+            [(ngModel)]="model.DataVencimento" name="DataVencimento">
           <mat-datepicker-toggle matSuffix [for]="pickerVc"></mat-datepicker-toggle>
           <mat-datepicker #pickerVc></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Tipo do documento" id="TipoConta" [(ngModel)]="model.TipoConta" name="TipoConta">
+          <input matInput placeholder="Tipo do documento" id="TipoConta" [(ngModel)]="model.TipoConta" name="TipoConta"
+            required>
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Valor do documento" id="ValorDocumento" [(ngModel)]="model.ValorDocumento" name="ValorDocumento">
+          <input matInput placeholder="Valor do documento" id="ValorDocumento" [(ngModel)]="model.ValorDocumento"
+            name="ValorDocumento" required #valDoc="ngModel">
+            <mat-error *ngIf="valDoc.invalid && valDoc.touched">O valor é obrigatório</mat-error>
         </mat-form-field>
+
         <mat-form-field class="col-md-3">
           <input matInput placeholder="Multa" id="Multa" [(ngModel)]="model.Multa" name="Multa">
+
         </mat-form-field>
         <mat-form-field class="col-md-3">
           <input matInput placeholder="Juros" id="Juros" [(ngModel)]="model.Juros" name="Juros">
@@ -61,17 +70,19 @@
 
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Valor a pagar" id="ValorAPagar" [(ngModel)]="model.ValorAPagar" name="ValorAPagar">
+          <input matInput placeholder="Valor a pagar" id="ValorAPagar" [(ngModel)]="model.ValorAPagar"
+            name="ValorAPagar">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-12">
-          <input matInput placeholder="Código de barras" id="LinhaDigitavel" [(ngModel)]="model.LinhaDigitavel" name="LinhaDigitavel">
+          <input matInput placeholder="Código de barras" id="LinhaDigitavel" [(ngModel)]="model.LinhaDigitavel"
+            name="LinhaDigitavel">
         </mat-form-field>
       </div>
     </div>
 
-    <button mat-raised-button type="submit" (click)="Incluir()">Confirmar</button>
+    <button mat-raised-button type="submit" [disabled]="!GerenciarImpostos.valid" (click)="Incluir()">Confirmar</button>
     <button mat-raised-button type="reset">Cancelar</button>
     <button mat-raised-button (click)="Voltar()">Voltar</button>
 
