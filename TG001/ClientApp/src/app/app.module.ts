@@ -23,46 +23,68 @@ import { MainOutrasComponent } from './pages/outras/main-outras/main-outras.comp
 import { GerenciarOutrasComponent } from './pages/outras/gerenciar-outras/gerenciar-outras.component';
 import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { HomeComponent } from './home/home.component';
+import { CounterComponent } from './counter/counter.component';
+import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
+import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
+import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
+import { MvcPartialDirective } from './main-nav/MvcPartialDirective';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GerenciarBoletosComponent,
-    TelaContaComponent,
-    MainNavComponent,
-    NavItemComponent,
-    MainBoletosComponent,
-    GerenciarImpostosComponent,
-    MainImpostosComponent,
-    MainOutrasComponent,
-    GerenciarOutrasComponent,
-    MigrarContasComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatButtonModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    MatTreeModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatMenuModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		NavMenuComponent,
+		HomeComponent,
+		CounterComponent,
+		FetchDataComponent,
+		GerenciarBoletosComponent,
+		TelaContaComponent,
+		MainNavComponent,
+		NavItemComponent,
+		MainBoletosComponent,
+		GerenciarImpostosComponent,
+		MainImpostosComponent,
+		MainOutrasComponent,
+		GerenciarOutrasComponent,
+		MigrarContasComponent,
+		MvcPartialDirective
+	],
+	imports: [
+		BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+		HttpClientModule,
+		ApiAuthorizationModule,
+		RouterModule.forRoot([
+			//{ path: '', component: HomeComponent, pathMatch: 'full' },
+			//{ path: 'counter', component: CounterComponent },
+			//{ path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+		]),
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MatSidenavModule,
+		MatButtonModule,
+		LayoutModule,
+		MatToolbarModule,
+		MatIconModule,
+		MatListModule,
+		MatTreeModule,
+		MatIconModule,
+		MatButtonModule,
+		MatCardModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatMenuModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+		FormsModule,
+	],
+	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

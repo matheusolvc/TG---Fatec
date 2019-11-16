@@ -8,21 +8,24 @@ import { GerenciarImpostosComponent } from './pages/impostos/gerenciar-impostos/
 import { GerenciarOutrasComponent } from './pages/outras/gerenciar-outras/gerenciar-outras.component';
 import { MainOutrasComponent } from './pages/outras/main-outras/main-outras.component';
 import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.component';
+import { AuthorizeGuard } from '../api-authorization/authorize.guard';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 
 const routes: Routes = [
-  { path: 'contas/boletos', component: MainBoletosComponent },
-  { path: 'contas/boletos/editar', component: GerenciarBoletosComponent },
-  { path: 'contas/impostos', component: MainImpostosComponent },
-  { path: 'contas/impostos/editar', component: GerenciarImpostosComponent },
-  { path: 'contas/outras', component: MainOutrasComponent },
-  { path: 'contas/outras/editar', component: GerenciarOutrasComponent },
-  { path: 'contas/migrar', component: MigrarContasComponent },
-  { path: 'contas', component: TelaContaComponent }
+	{ path: 'contas/boletos', component: MainBoletosComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/boletos/editar', component: GerenciarBoletosComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/impostos', component: MainImpostosComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/impostos/editar', component: GerenciarImpostosComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/outras', component: MainOutrasComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/outras/editar', component: GerenciarOutrasComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/migrar', component: MigrarContasComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas', component: TelaContaComponent, canActivate: [AuthorizeGuard] },
+	//{ path: '', component: NavMenuComponent, canActivate: [AuthorizeGuard] }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

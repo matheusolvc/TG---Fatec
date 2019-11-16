@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TG001.Data;
 using TG001.Models;
-using TG001.Repo.Contexto;
 
 namespace TG001.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OutrasContasController : ControllerBase
     {
-        private readonly ContasAPagarContexto _context;
+        private readonly ContasAPagarContext _context;
 
-        public OutrasContasController(ContasAPagarContexto context)
+        public OutrasContasController(ContasAPagarContext context)
         {
             _context = context;
         }
