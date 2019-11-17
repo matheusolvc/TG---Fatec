@@ -33,6 +33,7 @@ import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { MvcPartialDirective } from './main-nav/MvcPartialDirective';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { MvcPartialDirective } from './main-nav/MvcPartialDirective';
 		MatDatepickerModule,
 		MatNativeDateModule,
 		FormsModule,
+		MatTableModule,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }

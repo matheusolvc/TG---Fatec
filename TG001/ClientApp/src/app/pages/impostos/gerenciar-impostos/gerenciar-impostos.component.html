@@ -3,7 +3,7 @@
     <div class="example-container">
       <div class="row">
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="ID da Conta" id="ID" [(ngModel)]="model.ID" name="ID">
+          <input matInput placeholder="ID da Conta" id="ID" [(ngModel)]="model.ID" name="ID" disabled>
         </mat-form-field>
         <mat-form-field class="col-md-6">
           <input matInput placeholder="Status" id="Status" [(ngModel)]="model.Status" name="Status">
@@ -56,7 +56,7 @@
         <mat-form-field class="col-md-3">
           <input matInput placeholder="Valor do documento" id="ValorDocumento" [(ngModel)]="model.ValorDocumento"
             name="ValorDocumento" required #valDoc="ngModel">
-            <mat-error *ngIf="valDoc.invalid && valDoc.touched">O valor é obrigatório</mat-error>
+          <mat-error *ngIf="valDoc.invalid && valDoc.touched">O valor é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field class="col-md-3">
@@ -81,10 +81,11 @@
         </mat-form-field>
       </div>
     </div>
-
-    <button mat-raised-button type="submit" [disabled]="!GerenciarImpostos.valid" (click)="Incluir()">Confirmar</button>
-    <button mat-raised-button type="reset">Cancelar</button>
-    <button mat-raised-button (click)="Voltar()">Voltar</button>
-
+    <div class="div-button">
+      <button mat-raised-button (click)="Voltar()">Voltar</button>
+      <button class="cancel" mat-raised-button type="reset">Cancelar</button>
+      <button class="confirm" mat-raised-button type="submit" [disabled]="!GerenciarImpostos.valid"
+        (click)="Incluir()">Confirmar</button>
+    </div>
   </mat-card>
 </form>

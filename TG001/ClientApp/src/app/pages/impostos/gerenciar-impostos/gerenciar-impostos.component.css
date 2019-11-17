@@ -1,0 +1,17 @@
+.div-button{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.cancel{
+ background-color: red;
+ color: whitesmoke;
+}
+
+.confirm{
+    background-color: green;
+    color: whitesmoke;
+}
