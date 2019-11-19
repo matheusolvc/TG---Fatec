@@ -34,6 +34,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { MvcPartialDirective } from './main-nav/MvcPartialDirective';
 import {MatTableModule} from '@angular/material/table';
+import { TableContaComponent } from './table-conta/table-conta.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {MatTableModule} from '@angular/material/table';
 		MainOutrasComponent,
 		GerenciarOutrasComponent,
 		MigrarContasComponent,
-		MvcPartialDirective
+		MvcPartialDirective,
+		TableContaComponent
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
