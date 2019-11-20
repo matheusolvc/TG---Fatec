@@ -10,6 +10,7 @@ import { MainOutrasComponent } from './pages/outras/main-outras/main-outras.comp
 import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.component';
 import { AuthorizeGuard } from '../api-authorization/authorize.guard';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { PagarContasComponent } from './pages/pagar-contas/pagar-contas.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
 	{ path: 'contas/outras/editar', component: GerenciarOutrasComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas/migrar', component: MigrarContasComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas', component: TelaContaComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'pagar-contas', component: PagarContasComponent, canActivate: [AuthorizeGuard] },
 	//{ path: '', component: NavMenuComponent, canActivate: [AuthorizeGuard] }
 ];
 

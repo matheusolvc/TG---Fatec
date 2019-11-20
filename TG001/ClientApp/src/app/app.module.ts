@@ -35,7 +35,8 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { MvcPartialDirective } from './main-nav/MvcPartialDirective';
 import {MatTableModule} from '@angular/material/table';
 import { TableContaComponent } from './table-conta/table-conta.component';
-
+import { PagarContasComponent } from './pages/pagar-contas/pagar-contas.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
 	declarations: [
@@ -55,7 +56,8 @@ import { TableContaComponent } from './table-conta/table-conta.component';
 		GerenciarOutrasComponent,
 		MigrarContasComponent,
 		MvcPartialDirective,
-		TableContaComponent
+		TableContaComponent,
+		PagarContasComponent
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -85,6 +87,7 @@ import { TableContaComponent } from './table-conta/table-conta.component';
 		MatNativeDateModule,
 		FormsModule,
 		MatTableModule,
+		MatRadioModule,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }

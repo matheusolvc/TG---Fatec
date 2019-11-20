@@ -1,0 +1,48 @@
+<div class="container">
+    <mat-card>
+        <mat-card-subtitle>Filtro</mat-card-subtitle>
+        <mat-radio-group class="radio-group" aria-label="Select an option">
+            <mat-radio-button value="1">A vencer</mat-radio-button>
+            <mat-radio-button value="2">Pendente</mat-radio-button>
+            <mat-radio-button value="3">Por fornecedor</mat-radio-button>
+            <mat-radio-button value="2">Por data de vencimento</mat-radio-button>
+        </mat-radio-group>
+        <mat-divider></mat-divider>
+        <mat-card-subtitle class="subtitle-child">Período</mat-card-subtitle>
+        <div class="row col-md-8">
+            <mat-form-field>
+                <input matInput [matDatepicker]="dataIni" placeholder="Data inicial">
+                <mat-datepicker-toggle matSuffix [for]="dataIni"></mat-datepicker-toggle>
+                <mat-datepicker #dataIni></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row col-md-8">
+            <mat-form-field>
+                <input matInput [matDatepicker]="dataFim" placeholder="Data final">
+                <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                <mat-datepicker #dataFim></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-card-subtitle class="subtitle-child">Aqui vai a tabela</mat-card-subtitle>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <span>Remessa</span>
+                <span class="spacer"></span>
+                <mat-form-field class="col-md-3 remessa-values">
+                    <input matInput placeholder="ID Remessa" id="idRemessa" name="idRemessa" disabled>
+                </mat-form-field>
+                <mat-form-field class="col-md-3 remessa-values">
+                    <input matInput placeholder="Valor remessa" id="valRemessa" name="valRemessa" disabled>
+                </mat-form-field>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <table>
+            <th >Conta</th>
+            <th>Fornecedor</th>
+            <th>Data de vencimento</th>
+            <th>Tipo documento</th>
+            <th>Valor a pagar</th>
+        </table>
+    </mat-card>
+</div>

@@ -1,17 +1,26 @@
-<div class="row d-flex justify-content-center align-items-center">
-    <mat-form-field class="col-md-3">
-        <input matInput [matDatepicker]="dtIni" placeholder="Data inicial">
-        <mat-datepicker-toggle matSuffix [for]="dtIni"></mat-datepicker-toggle>
-        <mat-datepicker #dtIni></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field class="col-md-4">
-        <input matInput [matDatepicker]="dtFim" placeholder="Data final">
-        <mat-datepicker-toggle matSuffix [for]="dtFim"></mat-datepicker-toggle>
-        <mat-datepicker #dtFim></mat-datepicker>
-    </mat-form-field>
-    <div class="col-md-3">
-        <button mat-raised-button><mat-icon aria-hidden="false" aria-label="import_export icon">import_export</mat-icon>
-            Migrar dados
-        </button>
-    </div>
+<div class="container-fluid">
+    <mat-card class="col-md-6 mx-auto d-flex flex-column">
+        <div class="row col-md-8">
+            <mat-form-field>
+                <input matInput [matDatepicker]="dataIni" placeholder="Data inicial">
+                <mat-datepicker-toggle matSuffix [for]="dataIni"></mat-datepicker-toggle>
+                <mat-datepicker #dataIni></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row col-md-8">
+            <mat-form-field>
+                <input matInput [matDatepicker]="dataFim" placeholder="Data final">
+                <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                <mat-datepicker #dataFim></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row col-md-8">
+            <div>
+                <button mat-raised-button>
+                    <mat-icon aria-hidden="false" aria-label="import_export icon">import_export</mat-icon>
+                    Migrar dados
+                </button>
+            </div>
+        </div>
+    </mat-card>
 </div>

@@ -1,0 +1,30 @@
+mat-card {
+    margin: 15px 5px;
+}
+
+mat-card-subtitle {
+    color: #673AB7;
+}
+
+.subtitle-child {
+    margin-top: 25px !important;
+}
+
+.container {
+    padding: 0;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.remessa-values {
+    padding: 0 14px;
+    font-size: 14px;
+}
