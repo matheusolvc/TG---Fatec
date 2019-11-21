@@ -1,0 +1,43 @@
+<div class="container">
+    <mat-card>
+        <form #GerenciarImpostos="ngForm">
+            <div class="row">
+                <mat-form-field class="col-md-3">
+                    <input matInput placeholder="Nº" id="idReembolso" name="idReembolso" disabled>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-md-3">
+                    <input matInput placeholder="Nº Documento" id="numDoc" name="numDoc" disabled>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-md-3">
+                    <input matInput [matDatepicker]="DtRecibo" placeholder="Data recibo" id="DtRecibo" name="DtRecibo">
+                    <mat-datepicker-toggle matSuffix [for]="DtRecibo"></mat-datepicker-toggle>
+                    <mat-datepicker #DtRecibo></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-md-3">
+                    <input matInput placeholder="Valor a reembolsar" id="valor" name="valor">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-md-8">
+                    <input matInput #message maxlength="256" placeholder="Descrição">
+                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button mat-raised-button>
+                        <mat-icon aria-hidden="false" aria-label="attach_file icon">attach_file</mat-icon>
+                        Adicionar anexo
+                    </button>
+                    <button class="primary" mat-raised-button color="primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+</div>

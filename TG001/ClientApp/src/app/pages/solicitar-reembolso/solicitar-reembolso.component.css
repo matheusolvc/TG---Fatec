@@ -1,0 +1,15 @@
+mat-card {
+    margin: 15px 5px;
+}
+
+mat-card-subtitle {
+    color: #673AB7;
+}
+
+.container {
+    padding: 0;
+}
+
+.primary{
+    margin-left: 10px;
+}

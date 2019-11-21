@@ -1,0 +1,57 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="dtSolicitacao">
+        <th mat-header-cell *matHeaderCellDef> Dt. Solicitação </th>
+        <td mat-cell *matCellDef="let element"> {{element.dtSolicitacao}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="dtVencimento">
+        <th mat-header-cell *matHeaderCellDef> Dt. Vencimento </th>
+        <td mat-cell *matCellDef="let element"> {{element.dtVencimento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef> Valor a pagar </th>
+        <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="options" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>done</mat-icon>
+                    <span>Aprovar</span>
+                </button>
+                <button mat-menu-item disabled>
+                    <mat-icon>clear</mat-icon>
+                    <span>Rejeitar</span>
+                </button>
+            </mat-menu>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

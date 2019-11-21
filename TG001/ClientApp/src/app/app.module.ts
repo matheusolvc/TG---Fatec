@@ -37,6 +37,10 @@ import {MatTableModule} from '@angular/material/table';
 import { TableContaComponent } from './table-conta/table-conta.component';
 import { PagarContasComponent } from './pages/pagar-contas/pagar-contas.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { TelaReembolsoComponent } from './pages/tela-reembolso/tela-reembolso.component';
+import { AprovarReembolsoComponent } from './pages/aprovar-reembolso/aprovar-reembolso.component';
+import { SolicitarReembolsoComponent } from './pages/solicitar-reembolso/solicitar-reembolso.component';
+import { MinhasSolicitacoesComponent } from './pages/minhas-solicitacoes/minhas-solicitacoes.component';
 
 @NgModule({
 	declarations: [
@@ -57,7 +61,11 @@ import {MatRadioModule} from '@angular/material/radio';
 		MigrarContasComponent,
 		MvcPartialDirective,
 		TableContaComponent,
-		PagarContasComponent
+		PagarContasComponent,
+		TelaReembolsoComponent,
+		AprovarReembolsoComponent,
+		SolicitarReembolsoComponent,
+		MinhasSolicitacoesComponent
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
