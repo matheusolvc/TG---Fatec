@@ -20,10 +20,13 @@ import { SolicitarReembolsoComponent } from './pages/solicitar-reembolso/solicit
 const routes: Routes = [
 	{ path: 'contas/boletos', component: MainBoletosComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas/boletos/editar', component: GerenciarBoletosComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/boletos/editar/:id', component: GerenciarBoletosComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas/impostos', component: MainImpostosComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas/impostos/editar', component: GerenciarImpostosComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/impostos/editar/:id', component: GerenciarImpostosComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas/outras', component: MainOutrasComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas/outras/editar', component: GerenciarOutrasComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'contas/outras/editar/:id', component: GerenciarOutrasComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas/migrar', component: MigrarContasComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'contas', component: TelaContaComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'reembolsos', component: TelaReembolsoComponent, canActivate: [AuthorizeGuard] },
@@ -31,6 +34,7 @@ const routes: Routes = [
 	{ path: 'reembolsos/aprovar', component: AprovarReembolsoComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'reembolsos/solicitar', component: SolicitarReembolsoComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'pagar-contas', component: PagarContasComponent, canActivate: [AuthorizeGuard] },
+	{ path: '', redirectTo:'authentication/login?returnurl=contas',pathMatch:'full' },
 	//{ path: '', component: NavMenuComponent, canActivate: [AuthorizeGuard] }
 ];
 

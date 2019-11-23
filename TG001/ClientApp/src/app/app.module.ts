@@ -10,7 +10,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatPaginatorModule } from '@angular/material';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +22,7 @@ import { MainImpostosComponent } from './pages/impostos/main-impostos/main-impos
 import { MainOutrasComponent } from './pages/outras/main-outras/main-outras.component';
 import { GerenciarOutrasComponent } from './pages/outras/gerenciar-outras/gerenciar-outras.component';
 import { MigrarContasComponent } from './pages/migrar-contas/migrar-contas.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -33,14 +33,15 @@ import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { MvcPartialDirective } from './main-nav/MvcPartialDirective';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { TableContaComponent } from './table-conta/table-conta.component';
 import { PagarContasComponent } from './pages/pagar-contas/pagar-contas.component';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { TelaReembolsoComponent } from './pages/tela-reembolso/tela-reembolso.component';
 import { AprovarReembolsoComponent } from './pages/aprovar-reembolso/aprovar-reembolso.component';
 import { SolicitarReembolsoComponent } from './pages/solicitar-reembolso/solicitar-reembolso.component';
 import { MinhasSolicitacoesComponent } from './pages/minhas-solicitacoes/minhas-solicitacoes.component';
+import { BoletoService } from './services/boletos.service';
 
 @NgModule({
 	declarations: [
@@ -93,12 +94,15 @@ import { MinhasSolicitacoesComponent } from './pages/minhas-solicitacoes/minhas-
 		MatMenuModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
-		FormsModule,
 		MatTableModule,
 		MatRadioModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatPaginatorModule
 	],
 	providers: [
-		{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+		{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+		BoletoService
 	],
 	bootstrap: [AppComponent]
 })
