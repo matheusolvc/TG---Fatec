@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using TG001.Data;
 using TG001.Models;
@@ -16,9 +17,11 @@ namespace TG001.Controllers
     public class BoletosController : ControllerBase
     {
         private readonly ContasAPagarContext _context;
+        private readonly Microsoft.AspNetCore.Identity.UserManager<Usuario> _userManager;
 
-        public BoletosController(ContasAPagarContext context)
+        public BoletosController(ContasAPagarContext context, Microsoft.AspNetCore.Identity.UserManager<Usuario> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -26,14 +29,14 @@ namespace TG001.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Boleto>>> GetBoletos()
         {
-            return await _context.Boletos.ToListAsync();
+            return await _context.Boletos.Include(b => b.Fornecedor).Include(b => b.Usuario).ToListAsync();
         }
 
         // GET: api/Boletos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Boleto>> GetBoleto(int id)
         {
-            Boleto boleto = await _context.Boletos.FindAsync(id);
+            Boleto boleto = await _context.Boletos.Include(b=>b.Fornecedor).Include(b=>b.Usuario).SingleOrDefaultAsync(b=>b.ID == id);
 
             if (boleto == null)
             {
@@ -77,11 +80,19 @@ namespace TG001.Controllers
         [HttpPost]
         public async Task<ActionResult<Boleto>> PostBoleto(Boleto boleto)
         {
-            boleto.DataCriacao = DateTime.Now;
-            _context.Boletos.Add(boleto);
-            await _context.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                var userID = HttpContext.User.Identities.First().Claims.FirstOrDefault(c => c.Type.Contains("nameidentifier"))?.Value;
+                //boleto.Usuario = await _userManager.GetUserAsync(HttpContext.User);
+                boleto.Usuario = await _context.Users.FindAsync(userID);
+                boleto.DataCriacao = DateTime.Now;
+                _context.Boletos.Add(boleto);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBoleto", new { id = boleto.ID }, boleto);
+                return CreatedAtAction("GetBoleto", new { id = boleto.ID }, boleto);
+            }
+            else
+                return BadRequest();
         }
 
         // DELETE: api/Boletos/5

@@ -1,23 +1,24 @@
-﻿namespace TG001.Models
-{
-    public class Colaborador
-    {
-        public int ID { get; set; }
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
+namespace TG001.Models
+{
+    public class Colaborador : Usuario
+    {
+
+        [Required]
         public string CPF { get; set; }
 
+        [Required]
         public string Nome { get; set; }
 
-        public string Matricula { get; set; }
-
-        public string Email { get; set; }
-
-        public string Senha { get; set; }
-
+        [Required]
         public string CodBanco { get; set; }
 
+        [Required]
         public string Agencia { get; set; }
 
+        [Required]
         public string Conta { get; set; }
     }
 }

@@ -13,11 +13,11 @@ namespace TG001.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ImpostoController : ControllerBase
+    public class ImpostosController : ControllerBase
     {
         private readonly ContasAPagarContext _context;
 
-        public ImpostoController(ContasAPagarContext context)
+        public ImpostosController(ContasAPagarContext context)
         {
             _context = context;
         }

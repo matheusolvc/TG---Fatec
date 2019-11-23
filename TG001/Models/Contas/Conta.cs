@@ -1,45 +1,48 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TG001.Models
 {
     public class Conta
     {
-        //[Key]
+        [Key]
         public int ID { get; set; }
 
-        //[Required]
+        [Required]
         public string Status { get; set; }
 
         public DateTime DataCriacao { get; set; }
 
-        //[Required]
         public DateTime? DataAlteracao { get; set; }
 
-        //[Required]
+        [Required]
         public DateTime DataEmissao { get; set; }
 
-        //[Required]
+        [Required]
         public DateTime DataVencimento { get; set; }
 
-        //[Required]
-        public DateTime DataPagamento { get; set; }
+        public DateTime? DataPagamento { get; set; }
 
-        //[Required]
+        [Required]
         public int TipoConta { get; set; }
 
-        //[Required]
+        [Required]
         public double ValorDocumento { get; set; }
 
-        //[Required]
+        [Required]
         public double Multa { get; set; }
 
-        //[Required]
+        [Required]
         public double Juros { get; set; }
 
-        //[Required]
+        [Required]
         public double ValorAPagar { get; set; }
 
-        public virtual ApplicationUser Usuario { get; set; }
+        [ForeignKey("Usuario")]
+        public string UsuarioID { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
     }
 }
