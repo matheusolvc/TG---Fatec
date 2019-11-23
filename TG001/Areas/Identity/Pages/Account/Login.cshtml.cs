@@ -18,14 +18,14 @@ namespace TG001.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<Usuario> _userManager;
+        private readonly SignInManager<Usuario> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, 
+        public LoginModel(SignInManager<Usuario> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager,
+            UserManager<Usuario> userManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
