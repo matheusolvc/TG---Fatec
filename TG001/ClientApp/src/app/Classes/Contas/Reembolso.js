@@ -14,9 +14,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Conta_1 = require("./Conta");
-var Boleto = /** @class */ (function (_super) {
-    __extends(Boleto, _super);
-    function Boleto(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario, LinhaDigitavel, FornecedorID, Fornecedor) {
+var Reembolso = /** @class */ (function (_super) {
+    __extends(Reembolso, _super);
+    function Reembolso(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario, DataRecibo, Descricao, ColaboradorID, Colaborador) {
         var _this = _super.call(this, ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario) || this;
         _this.ID = ID;
         _this.Status = Status;
@@ -32,12 +32,13 @@ var Boleto = /** @class */ (function (_super) {
         _this.ValorAPagar = ValorAPagar;
         _this.UsuarioID = UsuarioID;
         _this.Usuario = Usuario;
-        _this.LinhaDigitavel = LinhaDigitavel;
-        _this.FornecedorID = FornecedorID;
-        _this.Fornecedor = Fornecedor;
+        _this.DataRecibo = DataRecibo;
+        _this.Descricao = Descricao;
+        _this.ColaboradorID = ColaboradorID;
+        _this.Colaborador = Colaborador;
         return _this;
     }
-    return Boleto;
+    return Reembolso;
 }(Conta_1.Conta));
-exports.Boleto = Boleto;
-//# sourceMappingURL=Boleto.js.map
+exports.Reembolso = Reembolso;
+//# sourceMappingURL=Reembolso.js.map

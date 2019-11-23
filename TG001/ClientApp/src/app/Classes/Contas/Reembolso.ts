@@ -1,8 +1,9 @@
-import { Conta } from './Conta';
-import { Usuario } from '../Usuario';
-import { Fornecedor } from '../Fornecedor';
+import { Conta } from "./Conta";
+import { Colaborador } from "../Colaborador";
+import { Usuario } from "../Usuario";
 
-export class Boleto extends Conta {
+
+export class Reembolso extends Conta {
 	constructor(
 		public ID?: number,
 		public Status?: string,
@@ -18,11 +19,13 @@ export class Boleto extends Conta {
 		public ValorAPagar?: number,
 		public UsuarioID?: string,
 		public Usuario?: Usuario,
-		public LinhaDigitavel?: string,
-		public FornecedorID?: number,
-		public Fornecedor?: Fornecedor,
+
+
+		public DataRecibo?: Date,
+		public Descricao?: string,
+		public ColaboradorID?: string,
+		public Colaborador?: Colaborador
 	) {
 		super(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario);
 	}
-
 }

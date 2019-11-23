@@ -1,8 +1,7 @@
+import { Conta } from "./Conta";
 import { Usuario } from "../Usuario";
 
-
-export class Conta {
-
+export class Renegociacao extends Conta {
 	constructor(
 		public ID?: number,
 		public Status?: string,
@@ -17,6 +16,19 @@ export class Conta {
 		public Juros?: number,
 		public ValorAPagar?: number,
 		public UsuarioID?: string,
-		public Usuario?: Usuario
-	) { }
+		public Usuario?: Usuario,
+
+
+		public DataSolicitacao?: Date,
+		public TipoRenegociacao?: string,
+		public QuantidadeParcelas?: number,
+		public NovaDataVencimento?: Date,
+		public NovoValor?: number,
+		public Observacao?: string,
+		public ContaID?: number,
+		public ContaRenegociada?: Conta
+	) {
+        super()
+	}
 }
+

@@ -14,10 +14,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Conta_1 = require("./Conta");
-var Boleto = /** @class */ (function (_super) {
-    __extends(Boleto, _super);
-    function Boleto(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario, LinhaDigitavel, FornecedorID, Fornecedor) {
-        var _this = _super.call(this, ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario) || this;
+var Renegociacao = /** @class */ (function (_super) {
+    __extends(Renegociacao, _super);
+    function Renegociacao(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario, DataSolicitacao, TipoRenegociacao, QuantidadeParcelas, NovaDataVencimento, NovoValor, Observacao, ContaID, ContaRenegociada) {
+        var _this = _super.call(this) || this;
         _this.ID = ID;
         _this.Status = Status;
         _this.DataCriacao = DataCriacao;
@@ -32,12 +32,17 @@ var Boleto = /** @class */ (function (_super) {
         _this.ValorAPagar = ValorAPagar;
         _this.UsuarioID = UsuarioID;
         _this.Usuario = Usuario;
-        _this.LinhaDigitavel = LinhaDigitavel;
-        _this.FornecedorID = FornecedorID;
-        _this.Fornecedor = Fornecedor;
+        _this.DataSolicitacao = DataSolicitacao;
+        _this.TipoRenegociacao = TipoRenegociacao;
+        _this.QuantidadeParcelas = QuantidadeParcelas;
+        _this.NovaDataVencimento = NovaDataVencimento;
+        _this.NovoValor = NovoValor;
+        _this.Observacao = Observacao;
+        _this.ContaID = ContaID;
+        _this.ContaRenegociada = ContaRenegociada;
         return _this;
     }
-    return Boleto;
+    return Renegociacao;
 }(Conta_1.Conta));
-exports.Boleto = Boleto;
-//# sourceMappingURL=Boleto.js.map
+exports.Renegociacao = Renegociacao;
+//# sourceMappingURL=Renegociacao.js.map

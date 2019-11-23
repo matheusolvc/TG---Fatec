@@ -2,8 +2,9 @@ import { Conta } from './Conta';
 import { Usuario } from '../Usuario';
 import { Fornecedor } from '../Fornecedor';
 
-export class Boleto extends Conta {
+export class OutraConta extends Conta {
 	constructor(
+		//Conta
 		public ID?: number,
 		public Status?: string,
 		public DataCriacao?: Date,
@@ -18,9 +19,11 @@ export class Boleto extends Conta {
 		public ValorAPagar?: number,
 		public UsuarioID?: string,
 		public Usuario?: Usuario,
-		public LinhaDigitavel?: string,
+
+		//Outra Conta
 		public FornecedorID?: number,
-		public Fornecedor?: Fornecedor,
+		public Fornecedor?: Fornecedor
+
 	) {
 		super(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario);
 	}
