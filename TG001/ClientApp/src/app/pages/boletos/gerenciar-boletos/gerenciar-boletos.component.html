@@ -1,30 +1,32 @@
-<form #GerenciarBoletos="ngForm">
+<h3>{{title}} de Boleto</h3>
+
+<form [formGroup]="boletoForm" (ngSubmit)="Confirmar()" #formDir="ngForm" novalidate>
   <mat-card class="boleto-card">
     <div class="example-container">
       <div class="row">
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="ID Conta" [(ngModel)]="model.ID" name="ID">
+          <input matInput placeholder="ID Conta" type="text" formControlName="ID">
         </mat-form-field>
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="Status" [(ngModel)]="model.Status" name="Status">
+          <input matInput placeholder="Status" formControlName="Status">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="ID Fornecedor" [(ngModel)]="model.IDFornecedor" name="IDFornecedor">
+          <input #IDFornecedor matInput placeholder="ID Fornecedor" formControlName="FornecedorID" (blur)="CarregarFornecedor()">
         </mat-form-field>
       </div>
-      <div class="row">
-        <mat-form-field class="col-md-4">
-          <input matInput placeholder="CNPJ" [(ngModel)]="model.CNPJ" name="CNPJ">
+      <div class="row"  formGroupName="Fornecedor">
+        <mat-form-field class="col-md-4"  >
+          <input matInput placeholder="CNPJ" formControlName="CNPJ">
         </mat-form-field>
         <mat-form-field class="col-md-8">
-          <input matInput placeholder="Razão social" [(ngModel)]="model.RazaoSocial" name="RazaoSocial">
+          <input matInput placeholder="Razão Social" formControlName="RazaoSocial">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="Nº Documento" [(ngModel)]="model.NumDocumento" name="NumDocumento">
+          <input matInput placeholder="Nº Documento">
         </mat-form-field>
         <mat-form-field class="col-md-6">
           <input matInput placeholder="Série">
@@ -32,45 +34,41 @@
       </div>
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão" [(ngModel)]="model.DataEmissao" name="DataEmissao">
-          <mat-datepicker-toggle matSuffix [for]="pickerEm"></mat-datepicker-toggle>
-          <mat-datepicker #pickerEm></mat-datepicker>
+          <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão" formControlName="DataEmissao">
         </mat-form-field>
         <mat-form-field class="col-md-4">
-          <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento" [(ngModel)]="model.DataVencimento" name="DataVencimento">
-          <mat-datepicker-toggle matSuffix [for]="pickerVc"></mat-datepicker-toggle>
-          <mat-datepicker #pickerVc></mat-datepicker>
+          <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento" formControlName="DataVencimento">
         </mat-form-field>
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Tipo do documento" [(ngModel)]="model.TipoConta" name="TipoConta">
+          <input matInput placeholder="Tipo do documento" formControlName="TipoConta">
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Valor do documento" [(ngModel)]="model.ValorDocumento" name="ValorDocumento">
+          <input matInput placeholder="Valor do documento" formControlName="ValorDocumento">
         </mat-form-field>
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Multa" [(ngModel)]="model.Multa" name="Multa">
+          <input matInput placeholder="Multa" formControlName="Multa">
         </mat-form-field>
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Juros" [(ngModel)]="model.Juros" name="Juros">
+          <input matInput placeholder="Juros" formControlName="Juros">
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Valor a pagar" [(ngModel)]="model.ValorAPagar" name="ValorAPagar">
+          <input matInput placeholder="Valor a pagar" formControlName="ValorAPagar">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-12">
-          <input matInput placeholder="Código de barras" [(ngModel)]="model.LinhaDigitavel" name="LinhaDigitavel">
+          <input matInput placeholder="Código de barras" formControlName="LinhaDigitavel">
         </mat-form-field>
       </div>
     </div>
   </mat-card>
-  <button mat-raised-button type="submit" (click)="Incluir()">Confirmar</button>
-  <button mat-raised-button type="reset">Cancelar</button>
-  <button mat-raised-button (click)="Voltar()">Voltar</button>
+  <button mat-raised-button type="submit">Confirmar</button>
+  <button mat-raised-button type="button" (click)="Resetar()">Cancelar</button>
+  <button mat-raised-button type="button" (click)="Voltar()">Voltar</button>
 </form>
