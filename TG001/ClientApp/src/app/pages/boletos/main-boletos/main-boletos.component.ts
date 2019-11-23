@@ -31,7 +31,7 @@ export class MainBoletosComponent implements OnInit {
 		});
 	}
 	boletos: BoletoData[];
-	displayedColumns: string[] = ['ID', 'CNPJ', 'DataVencimento', 'Status', 'Editar', 'Remover'];
+	displayedColumns: string[] = ['ID', 'CNPJ', 'DataVencimento', 'Status', 'opcoes'];
 	dataSource = new MatTableDataSource(this.boletos);
 	applyFilter(filterValue: string) {
 		this.dataSource.filter = filterValue.trim().toLowerCase();

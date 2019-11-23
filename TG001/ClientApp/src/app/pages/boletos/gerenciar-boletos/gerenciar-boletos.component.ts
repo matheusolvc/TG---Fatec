@@ -97,7 +97,7 @@ export class GerenciarBoletosComponent implements OnInit {
 		}
 	}
 
-	@ViewChild("IDFornecedor") idFornecedor: ElementRef
+	@ViewChild("IDFornecedor", { static: false}) fornField: ElementRef
 	CarregarFornecedor() {
 		this._fornecedorService.getFornecedor(this.boletoForm.get(["FornecedorID"]).value).subscribe(data => {
 			let CNPJ = data.CNPJ;
@@ -109,7 +109,7 @@ export class GerenciarBoletosComponent implements OnInit {
 			this.boletoForm.get(["FornecedorID"]).patchValue('');
 			this.boletoForm.get(["Fornecedor", "CNPJ"]).patchValue('');
 			this.boletoForm.get(["Fornecedor", "RazaoSocial"]).patchValue('');
-			this.idFornecedor.nativeElement.focus();
+			this.fornField.nativeElement.focus();
 		})
 	}
 }
