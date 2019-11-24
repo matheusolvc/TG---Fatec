@@ -26,14 +26,14 @@ namespace TG001.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OutraConta>>> GetOutrasContas()
         {
-            return await _context.OutrasContas.ToListAsync();
+            return await _context.OutrasContas.Include(u=>u.Usuario).Include(f=>f.Fornecedor).ToListAsync();
         }
 
         // GET: api/OutrasContas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<OutraConta>> GetOutraConta(int id)
         {
-            OutraConta outraConta = await _context.OutrasContas.FindAsync(id);
+            OutraConta outraConta = await _context.OutrasContas.Include(o => o.Fornecedor).Include(b => b.Usuario).SingleOrDefaultAsync(o => o.ID == id);
 
             if (outraConta == null)
             {

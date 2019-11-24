@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +10,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatPaginatorModule, MAT_DATE_LOCALE } from '@angular/material';
+import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatPaginatorModule, MAT_DATE_LOCALE, MatPaginatorIntl } from '@angular/material';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -51,6 +51,11 @@ import { OutrasContasService } from './services/outras-contas.service';
 import { ReembolsoService } from './services/reembolso.service';
 import { RenegociacoesService } from './services/renegociacoes.service';
 import { RetornoLoteService } from './services/retorno-lote.service';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { getPTBRPaginatorIntl } from './utils/ptBR-paginator-intl';
+
+registerLocaleData(localePt);
 
 @NgModule({
 	declarations: [
@@ -109,6 +114,8 @@ import { RetornoLoteService } from './services/retorno-lote.service';
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
 		{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+		{ provide: MatPaginatorIntl, useValue: getPTBRPaginatorIntl() },
+		{ provide: LOCALE_ID, useValue: 'pt' },
 		BoletoService,
 		FornecedorService,
 		ContasMigracaoMigradasService,

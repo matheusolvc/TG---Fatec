@@ -67,7 +67,11 @@ export class GerenciarBoletosComponent implements OnInit {
 	ngOnInit() {
 		if (this.boletoID > 0) {
 			this.title = "Alteração";
-			this._boletoService.getBoleto(this.boletoID).subscribe((data: Boleto) => { this.boletoForm.setValue(data) });
+			this._boletoService.getBoleto(this.boletoID).subscribe((data: Boleto) => { this.boletoForm.setValue(data) }, error => {
+				console.log(error);
+				alert('Conta não encontrada!');
+				this._router.navigate(['/contas/impostos']);
+			});
 			console.log(this.boletoForm);
 		}
 	}

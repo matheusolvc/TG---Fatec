@@ -16,7 +16,7 @@ export class GerenciarImpostosComponent implements OnInit {
 	title: string = "Cadastro";
 	impostoID: number;
 	errorMessage: any;
-	boleto: Imposto;
+	imposto: Imposto;
 
 	constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,
 		private _impostoService: ImpostosService, private _fornecedorService: FornecedorService, private _router: Router) {
@@ -58,7 +58,11 @@ export class GerenciarImpostosComponent implements OnInit {
 	ngOnInit() {
 		if (this.impostoID > 0) {
 			this.title = "Alteração";
-			this._impostoService.getImposto(this.impostoID).subscribe((data: Imposto) => { this.impostoForm.setValue(data) });
+			this._impostoService.getImposto(this.impostoID).subscribe((data: Imposto) => { this.impostoForm.setValue(data) }, error => {
+				console.log(error);
+				alert('Conta não encontrada!');
+				this._router.navigate(['/contas/impostos']);
+			});
 			console.log(this.impostoForm);
 		}
 	}
