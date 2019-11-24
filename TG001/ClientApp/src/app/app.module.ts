@@ -10,7 +10,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatPaginatorModule } from '@angular/material';
+import { MatTreeModule, MatIconModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatPaginatorModule, MAT_DATE_LOCALE } from '@angular/material';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -42,6 +42,15 @@ import { AprovarReembolsoComponent } from './pages/aprovar-reembolso/aprovar-ree
 import { SolicitarReembolsoComponent } from './pages/solicitar-reembolso/solicitar-reembolso.component';
 import { MinhasSolicitacoesComponent } from './pages/minhas-solicitacoes/minhas-solicitacoes.component';
 import { BoletoService } from './services/boletos.service';
+import { FornecedorService } from './services/fornecedor.service';
+import { ContasMigracaoMigradasService } from './services/contas-migracao-migradas.service';
+import { ContasMigracaoService } from './services/contas-migracao.service';
+import { ImpostosService } from './services/imposto.service';
+import { LoteService } from './services/lote.service';
+import { OutrasContasService } from './services/outras-contas.service';
+import { ReembolsoService } from './services/reembolso.service';
+import { RenegociacoesService } from './services/renegociacoes.service';
+import { RetornoLoteService } from './services/retorno-lote.service';
 
 @NgModule({
 	declarations: [
@@ -73,9 +82,6 @@ import { BoletoService } from './services/boletos.service';
 		HttpClientModule,
 		ApiAuthorizationModule,
 		RouterModule.forRoot([
-			//{ path: '', component: HomeComponent, pathMatch: 'full' },
-			//{ path: 'counter', component: CounterComponent },
-			//{ path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
 		]),
 		AppRoutingModule,
 		BrowserAnimationsModule,
@@ -102,7 +108,17 @@ import { BoletoService } from './services/boletos.service';
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-		BoletoService
+		{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+		BoletoService,
+		FornecedorService,
+		ContasMigracaoMigradasService,
+		ContasMigracaoService,
+		ImpostosService,
+		LoteService,
+		OutrasContasService,
+		ReembolsoService,
+		RenegociacoesService,
+		RetornoLoteService
 	],
 	bootstrap: [AppComponent]
 })
