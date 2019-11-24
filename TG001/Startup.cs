@@ -13,6 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Newtonsoft.Json.Serialization;
+using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 namespace TG001
 {
@@ -31,14 +35,12 @@ namespace TG001
             services.AddDbContext<ContasAPagarContext>();
             services.AddScoped<DbContext, ContasAPagarContext>();
 
-            services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>()
+            services.AddDefaultIdentity<Usuario>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ContasAPagarContext>();
+            services.AddIdentityCore<Colaborador>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ContasAPagarContext>();
+            services.AddIdentityServer().AddApiAuthorization<Usuario, ContasAPagarContext>();
 
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ContasAPagarContext>();
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            services.AddAuthentication().AddIdentityServerJwt();
 
             services.Configure<JwtBearerOptions>(IdentityServerJwtConstants.IdentityServerJwtBearerScheme, options =>
             {
@@ -48,21 +50,24 @@ namespace TG001
                     await onTokenValidated(context);
                 };
             });
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddMvc().AddNewtonsoftJson(options=>
+            {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
+            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddRazorPages().AddNewtonsoftJson();
+            services.Configure<Config.ConfiguracoesDB>(Configuration.GetSection("ConfiguracoesDB"));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
-            services.Configure<Config.ConfiguracoesDB>(Configuration.GetSection("ConfiguracoesDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<Usuario> usuarioManager, UserManager<Colaborador> colaboradorManager, IServiceProvider serviceProvider, ContasAPagarContext contasAPagarContext)
         {
-            ApplicationDBInitializer.SeedUsers(userManager);
+            ApplicationDBInitializer.SeedDatabase(usuarioManager, colaboradorManager, contasAPagarContext, serviceProvider);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -109,5 +114,5 @@ namespace TG001
                 }
             });
         }
-    }
+    }   
 }

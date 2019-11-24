@@ -31,11 +31,11 @@ namespace TG001
             services.AddDbContext<ContasAPagarContext>();
             services.AddScoped<DbContext, ContasAPagarContext>();
 
-            services.AddDefaultIdentity<ApplicationUser>()
+            services.AddDefaultIdentity<Usuario>()
                 .AddEntityFrameworkStores<ContasAPagarContext>();
 
             services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ContasAPagarContext>();
+                .AddApiAuthorization<Usuario, ContasAPagarContext>();
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();

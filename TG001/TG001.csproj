@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -13,11 +13,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
@@ -31,6 +36,75 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191120160748_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120160748_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120161231_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120161231_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120161432_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120161432_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120162458_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120162458_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120164540_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120164540_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120165445_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120165445_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120165758_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120165758_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\Classes\Colaborador.ts" />
+    <None Remove="ClientApp\src\app\Classes\Contas\BaseUsuario.ts" />
+    <None Remove="ClientApp\src\app\Classes\Contas\Fornecedor.ts" />
+    <None Remove="ClientApp\src\app\Classes\Contas\Migracao\ContasMigracao.ts" />
+    <None Remove="ClientApp\src\app\Classes\Contas\Migracao\ContasMigracaoMigradas.ts" />
+    <None Remove="ClientApp\src\app\Classes\Contas\Reembolso.ts" />
+    <None Remove="ClientApp\src\app\Classes\Contas\Renegociacao.ts" />
+    <None Remove="ClientApp\src\app\Classes\Lote.ts" />
+    <None Remove="ClientApp\src\app\Classes\RetornoLote.ts" />
+    <None Remove="ClientApp\src\app\Classes\Usuario.ts" />
+    <None Remove="ClientApp\src\app\services\boletos.service.ts" />
+    <None Remove="ClientApp\src\app\services\contas-migracao-migradas.service.ts" />
+    <None Remove="ClientApp\src\app\services\contas-migracao.service.ts" />
+    <None Remove="ClientApp\src\app\services\fornecedor.service.ts" />
+    <None Remove="ClientApp\src\app\services\imposto.service.ts" />
+    <None Remove="ClientApp\src\app\services\lote.service.ts" />
+    <None Remove="ClientApp\src\app\services\outras-contas.service.ts" />
+    <None Remove="ClientApp\src\app\services\reembolso.service.ts" />
+    <None Remove="ClientApp\src\app\services\renegociacoes.service.ts" />
+    <None Remove="ClientApp\src\app\services\retorno-lote.service.ts" />
+    <None Remove="ClientApp\src\app\utils\app-constants.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Colaborador.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\BaseUsuario.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Contas\Migracao\ContasMigracao.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Contas\Migracao\ContasMigracaoMigradas.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Contas\Reembolso.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Contas\Renegociacao.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Fornecedor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Lote.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\RetornoLote.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Classes\Usuario.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\contas-migracao.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\contas-migracao-migradas.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\imposto.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\lote.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\outras-contas.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\reembolso.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\renegociacoes.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\retorno-lote.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\fornecedor.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\boletos.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\utils\app-constants.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

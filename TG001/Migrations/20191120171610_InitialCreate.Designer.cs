@@ -9,7 +9,7 @@ using TG001.Data;
 namespace TG001.Migrations
 {
     [DbContext(typeof(ContasAPagarContext))]
-    [Migration("20191116021109_InitialCreate")]
+    [Migration("20191120171610_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,7 +233,233 @@ namespace TG001.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("TG001.Models.ApplicationUser", b =>
+            modelBuilder.Entity("TG001.Models.Conta", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DataAlteracao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataEmissao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DataPagamento")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Juros")
+                        .HasColumnType("double");
+
+                    b.Property<int?>("LoteID")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Multa")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TipoConta")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsuarioID")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<double>("ValorAPagar")
+                        .HasColumnType("double");
+
+                    b.Property<double>("ValorDocumento")
+                        .HasColumnType("double");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LoteID");
+
+                    b.HasIndex("UsuarioID");
+
+                    b.ToTable("Conta");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Conta");
+                });
+
+            modelBuilder.Entity("TG001.Models.Fornecedor", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Agencia")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CNPJ")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CodBanco")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Conta")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RazaoSocial")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UF")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Fornecedores");
+                });
+
+            modelBuilder.Entity("TG001.Models.Lote", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DataAlteracao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataGeracao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("StatusTransmissao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UsuarioID")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<double>("ValorTotalLote")
+                        .HasColumnType("double");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UsuarioID");
+
+                    b.ToTable("Lotes");
+                });
+
+            modelBuilder.Entity("TG001.Models.Migracao.ContasMigracao", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataEmissao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataPagamento")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<double>("Juros")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Multa")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Valor")
+                        .HasColumnType("double");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ContasMigracao");
+                });
+
+            modelBuilder.Entity("TG001.Models.Migracao.ContasMigracaoMigradas", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ContasMigracaoID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataMigracao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("LoteID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ContasMigracaoID");
+
+                    b.ToTable("ContasMigracaoMigradas");
+                });
+
+            modelBuilder.Entity("TG001.Models.RetornoLote", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("LoteID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mensagem")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("StatusTransmissao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LoteID");
+
+                    b.ToTable("RetornosLote");
+                });
+
+            modelBuilder.Entity("TG001.Models.Usuario", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -243,6 +469,10 @@ namespace TG001.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Email")
@@ -257,6 +487,10 @@ namespace TG001.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Matricula")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("varchar(256)")
@@ -296,221 +530,18 @@ namespace TG001.Migrations
 
                     b.ToTable("AspNetUsers");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e6da0b50-9fe1-4aa5-9566-5f1691a72a41",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ca274130-6aea-4693-a997-ba0761ff0f1d",
-                            TwoFactorEnabled = false,
-                            UserName = "SUPERVISOR"
-                        });
-                });
-
-            modelBuilder.Entity("TG001.Models.Colaborador", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Agencia")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("CPF")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("CodBanco")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Conta")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Matricula")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Senha")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Colaboradores");
-                });
-
-            modelBuilder.Entity("TG001.Models.Conta", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DataAlteracao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataEmissao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataPagamento")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataVencimento")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<double>("Juros")
-                        .HasColumnType("double");
-
-                    b.Property<int?>("LoteID")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Multa")
-                        .HasColumnType("double");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TipoConta")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UsuarioId")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<double>("ValorAPagar")
-                        .HasColumnType("double");
-
-                    b.Property<double>("ValorDocumento")
-                        .HasColumnType("double");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("LoteID");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("Conta");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Conta");
-                });
-
-            modelBuilder.Entity("TG001.Models.Fornecedor", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Agencia")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Bairro")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("CNPJ")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Cidade")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("CodBanco")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Conta")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Endereco")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Numero")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("RazaoSocial")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Telefone")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UF")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Fornecedores");
-                });
-
-            modelBuilder.Entity("TG001.Models.Lote", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataGeracao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("StatusTransmissao")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UsuarioId")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<double>("ValorTotalLote")
-                        .HasColumnType("double");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("Lotes");
-                });
-
-            modelBuilder.Entity("TG001.Models.RetornoLote", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LoteID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mensagem")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("StatusTransmissao")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("LoteID");
-
-                    b.ToTable("RetornosLote");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Usuario");
                 });
 
             modelBuilder.Entity("TG001.Models.Boleto", b =>
                 {
                     b.HasBaseType("TG001.Models.Conta");
 
-                    b.Property<int?>("FornecedorID")
+                    b.Property<int>("FornecedorID")
                         .HasColumnType("int");
 
                     b.Property<string>("LinhaDigitavel")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasIndex("FornecedorID");
@@ -523,17 +554,22 @@ namespace TG001.Migrations
                     b.HasBaseType("TG001.Models.Conta");
 
                     b.Property<string>("CNPJMatriz")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("CodigoImposto")
                         .HasColumnType("int");
 
                     b.Property<string>("LinhaDigitavel")
+                        .IsRequired()
                         .HasColumnName("Imposto_LinhaDigitavel")
                         .HasColumnType("longtext");
 
-                    b.Property<TimeSpan>("PeriodoApuracao")
-                        .HasColumnType("time(6)");
+                    b.Property<DateTime>("PeriodoApuracaoFim")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("PeriodoApuracaoInicio")
+                        .HasColumnType("datetime(6)");
 
                     b.HasDiscriminator().HasValue("Imposto");
                 });
@@ -542,7 +578,7 @@ namespace TG001.Migrations
                 {
                     b.HasBaseType("TG001.Models.Conta");
 
-                    b.Property<int?>("FornecedorID")
+                    b.Property<int>("FornecedorID")
                         .HasColumnName("OutraConta_FornecedorID")
                         .HasColumnType("int");
 
@@ -555,8 +591,8 @@ namespace TG001.Migrations
                 {
                     b.HasBaseType("TG001.Models.Conta");
 
-                    b.Property<int?>("ColaboradorID")
-                        .HasColumnType("int");
+                    b.Property<string>("ColaboradorID")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("DataRecibo")
                         .HasColumnType("datetime(6)");
@@ -572,6 +608,9 @@ namespace TG001.Migrations
             modelBuilder.Entity("TG001.Models.Renegociacao", b =>
                 {
                     b.HasBaseType("TG001.Models.Conta");
+
+                    b.Property<int>("ContaID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataSolicitacao")
                         .HasColumnType("datetime(6)");
@@ -589,9 +628,39 @@ namespace TG001.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TipoRenegociacao")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.HasIndex("ContaID");
+
                     b.HasDiscriminator().HasValue("Renegociacao");
+                });
+
+            modelBuilder.Entity("TG001.Models.Colaborador", b =>
+                {
+                    b.HasBaseType("TG001.Models.Usuario");
+
+                    b.Property<string>("Agencia")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CodBanco")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Conta")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasDiscriminator().HasValue("Colaborador");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -605,7 +674,7 @@ namespace TG001.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("TG001.Models.ApplicationUser", null)
+                    b.HasOne("TG001.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -614,7 +683,7 @@ namespace TG001.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("TG001.Models.ApplicationUser", null)
+                    b.HasOne("TG001.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -629,7 +698,7 @@ namespace TG001.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TG001.Models.ApplicationUser", null)
+                    b.HasOne("TG001.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -638,7 +707,7 @@ namespace TG001.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("TG001.Models.ApplicationUser", null)
+                    b.HasOne("TG001.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -651,37 +720,52 @@ namespace TG001.Migrations
                         .WithMany("Contas")
                         .HasForeignKey("LoteID");
 
-                    b.HasOne("TG001.Models.ApplicationUser", "Usuario")
+                    b.HasOne("TG001.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("UsuarioID");
                 });
 
             modelBuilder.Entity("TG001.Models.Lote", b =>
                 {
-                    b.HasOne("TG001.Models.ApplicationUser", "Usuario")
+                    b.HasOne("TG001.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("UsuarioID");
+                });
+
+            modelBuilder.Entity("TG001.Models.Migracao.ContasMigracaoMigradas", b =>
+                {
+                    b.HasOne("TG001.Models.Migracao.ContasMigracao", "ContasMigracao")
+                        .WithMany()
+                        .HasForeignKey("ContasMigracaoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TG001.Models.RetornoLote", b =>
                 {
                     b.HasOne("TG001.Models.Lote", "Lote")
                         .WithMany()
-                        .HasForeignKey("LoteID");
+                        .HasForeignKey("LoteID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TG001.Models.Boleto", b =>
                 {
                     b.HasOne("TG001.Models.Fornecedor", "Fornecedor")
                         .WithMany()
-                        .HasForeignKey("FornecedorID");
+                        .HasForeignKey("FornecedorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TG001.Models.OutraConta", b =>
                 {
                     b.HasOne("TG001.Models.Fornecedor", "Fornecedor")
                         .WithMany()
-                        .HasForeignKey("FornecedorID");
+                        .HasForeignKey("FornecedorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TG001.Models.Reembolso", b =>
@@ -689,6 +773,15 @@ namespace TG001.Migrations
                     b.HasOne("TG001.Models.Colaborador", "Colaborador")
                         .WithMany()
                         .HasForeignKey("ColaboradorID");
+                });
+
+            modelBuilder.Entity("TG001.Models.Renegociacao", b =>
+                {
+                    b.HasOne("TG001.Models.Conta", "ContaRenegociada")
+                        .WithMany()
+                        .HasForeignKey("ContaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

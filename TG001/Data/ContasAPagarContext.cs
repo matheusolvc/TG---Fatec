@@ -25,8 +25,6 @@ namespace TG001.Data
     {
         private readonly ConfiguracoesDB ConfigDB;
 
-        //private const string StringDeConexao = "server=localhost;database=ContasAPagar;user=admin;password=123456";
-
         public ContasAPagarContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions, IOptions<ConfiguracoesDB> configDB) : base(options, operationalStoreOptions)
@@ -46,6 +44,7 @@ namespace TG001.Data
         public DbSet<ContasMigracao> ContasMigracao { get; set; }
         public DbSet<ContasMigracaoMigradas> ContasMigracaoMigradas { get; set; }
 
+        public DbSet<Conta> Conta { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -127,6 +126,8 @@ namespace TG001.Data
             }
         }
 
+        #region Enums
+
         private enum TipoContaMigracao
         {
             BOLETO,
@@ -151,6 +152,8 @@ namespace TG001.Data
             Outras
         }
 
+        #endregion
+
         private static void SeedContas(ContasAPagarContext context)
         {
             if (!context.Boletos.Any())
@@ -159,7 +162,7 @@ namespace TG001.Data
 
                 Random rand = new Random();
                 RandomDateTime randdt = new RandomDateTime();
-                int tam = rand.Next(1, 10);
+                int tam = rand.Next(1, 25);
                 List<Boleto> boletos = new List<Boleto>(tam);
 
                 for (int x = 0; x < tam; x++)
@@ -171,15 +174,17 @@ namespace TG001.Data
                     b.DataPagamento = rand.NextDouble() > 0.5d ? randdt.Next() : (DateTime?)null;
                     b.DataVencimento = randdt.Next();
                     b.FornecedorID = context.Fornecedores.Find(rand.Next(1, context.Fornecedores.Count())).ID;
-                    b.Juros = rand.NextDouble() * rand.Next();
+                    b.Juros = rand.NextDouble() * rand.Next(250);
 
-                    b.Multa = rand.NextDouble() * rand.Next();
+                    b.Multa = rand.NextDouble() * rand.Next(250);
                     b.Status = ((TipoStatusConta)rand.Next(2)).ToString();
                     b.TipoConta = (int)TipoConta.Boleto;
-                    b.UsuarioID = context.Users.Find(rand.Next(1, context.Users.Count()).ToString(CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture)).Id;
-                    b.ValorAPagar = rand.NextDouble() * rand.Next();
-                    b.ValorDocumento = rand.NextDouble() * rand.Next();
+                    b.UsuarioID = context.Users.ToArray()[rand.Next(context.Users.Count())].Id;
+                    b.ValorAPagar = rand.NextDouble() * rand.Next(250);
+                    b.ValorDocumento = rand.NextDouble() * rand.Next(250);
                     b.LinhaDigitavel = RandomString.NextString(15);
+                    b.NumeroDocumento = rand.Next().ToString(CultureInfo.InvariantCulture);
+                    b.Serie = RandomString.NextString(25);
                     boletos.Add(b);
                 }
 
@@ -198,7 +203,7 @@ namespace TG001.Data
 
                 Random rand = new Random();
                 RandomDateTime randdt = new RandomDateTime();
-                int tam = rand.Next(1, 10);
+                int tam = rand.Next(1, 25);
                 List<Imposto> impostos = new List<Imposto>(tam);
 
                 for (int x = 0; x < tam; x++)
@@ -218,18 +223,20 @@ namespace TG001.Data
                         DataEmissao = randdt.Next(),
                         DataPagamento = rand.NextDouble() > 0.5d ? randdt.Next() : (DateTime?)null,
                         DataVencimento = randdt.Next(),
-                        Juros = rand.NextDouble() * rand.Next(),
+                        Juros = rand.NextDouble() * rand.Next(250),
                         PeriodoApuracaoInicio = dtaprIni,
                         PeriodoApuracaoFim = dtAprFim,
-                        Multa = rand.NextDouble() * rand.Next(),
+                        Multa = rand.NextDouble() * rand.Next(250),
                         Status = ((TipoStatusConta)rand.Next(2)).ToString(),
-                        TipoConta = (int)TipoConta.Boleto,
-                        UsuarioID = context.Users.Find(rand.Next(1, context.Users.Count()).ToString(CultureInfo.InvariantCulture)).Id,
-                        ValorAPagar = rand.NextDouble() * rand.Next(),
-                        ValorDocumento = rand.NextDouble() * rand.Next(),
+                        TipoConta = (int)TipoConta.Imposto,
+                        UsuarioID = context.Users.ToArray()[rand.Next(context.Users.Count())].Id,
+                        ValorAPagar = rand.NextDouble() * rand.Next(250),
+                        ValorDocumento = rand.NextDouble() * rand.Next(250),
                         LinhaDigitavel = RandomString.NextString(15),
                         CNPJMatriz = RandomString.NextString(18),
-                        CodigoImposto = rand.Next()
+                        CodigoImposto = rand.Next(),
+                        NumeroDocumento = rand.Next().ToString(CultureInfo.InvariantCulture),
+                        Serie = RandomString.NextString(25)
                     });
                 }
 
@@ -249,7 +256,7 @@ namespace TG001.Data
 
                 Random rand = new Random();
                 RandomDateTime randdt = new RandomDateTime();
-                int tam = rand.Next(1, 10);
+                int tam = rand.Next(1, 25);
                 List<OutraConta> outrasContas = new List<OutraConta>(tam);
 
                 for (int x = 0; x < tam; x++)
@@ -270,15 +277,17 @@ namespace TG001.Data
                         DataEmissao = randdt.Next(),
                         DataPagamento = rand.NextDouble() > 0.5d ? randdt.Next() : (DateTime?)null,
                         DataVencimento = randdt.Next(),
-                        Juros = rand.NextDouble() * rand.Next(),
-                        Multa = rand.NextDouble() * rand.Next(),
+                        Juros = rand.NextDouble() * rand.Next(250),
+                        Multa = rand.NextDouble() * rand.Next(250),
                         Status = ((TipoStatusConta)rand.Next(2)).ToString(),
-                        TipoConta = (int)TipoConta.Boleto,
-                        UsuarioID = context.Users.Find(rand.Next(1, context.Users.Count()).ToString(CultureInfo.InvariantCulture)).Id,
-                        ValorAPagar = rand.NextDouble() * rand.Next(),
-                        ValorDocumento = rand.NextDouble() * rand.Next(),
-                        FornecedorID = context.Fornecedores.Find(rand.Next(1, context.Fornecedores.Count())).ID
-                });
+                        TipoConta = (int)TipoConta.Outras,
+                        UsuarioID = context.Users.ToArray()[rand.Next(context.Users.Count())].Id,
+                        ValorAPagar = rand.NextDouble() * rand.Next(250),
+                        ValorDocumento = rand.NextDouble() * rand.Next(250),
+                        FornecedorID = context.Fornecedores.ToArray()[rand.Next(context.Fornecedores.Count())].ID,
+                        NumeroDocumento = rand.Next().ToString(CultureInfo.InvariantCulture),
+                        Serie = RandomString.NextString(25)
+                    });
                 }
                 #endregion
 
@@ -316,15 +325,17 @@ namespace TG001.Data
                     r.DataEmissao = randdt.Next();
                     r.DataPagamento = rand.NextDouble() > 0.5d ? randdt.Next() : (DateTime?)null;
                     r.DataVencimento = randdt.Next();
-                    r.Juros = rand.NextDouble() * rand.Next();
-                    r.Multa = rand.NextDouble() * rand.Next();
+                    r.Juros = rand.NextDouble() * rand.Next(250);
+                    r.Multa = rand.NextDouble() * rand.Next(250);
                     r.Status = ((TipoStatusConta)rand.Next(2)).ToString();
-                    r.TipoConta = (int)TipoConta.Boleto;
-                    r.UsuarioID = context.Users.Find(rand.Next(1, context.Users.Count()).ToString()).Id;
-                    r.ValorAPagar = rand.NextDouble() * rand.Next();
-                    r.ValorDocumento = rand.NextDouble() * rand.Next();
-                    r.ColaboradorID = context.Colaboradores.Find(rand.Next(int.Parse(context.Colaboradores.Min(m => m.Id), CultureInfo.InvariantCulture), int.Parse(context.Colaboradores.Max(m=>m.Id), CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture)).Id;
+                    r.TipoConta = (int)TipoConta.Renegociacao;
+                    r.UsuarioID = context.Users.ToArray()[rand.Next(0, context.Users.Count())].Id;
+                    r.ValorAPagar = rand.NextDouble() * rand.Next(250);
+                    r.ValorDocumento = rand.NextDouble() * rand.Next(250);
+                    r.ColaboradorID = context.Colaboradores.ToArray()[rand.Next(0,context.Colaboradores.Count())].Id;
                     r.DataRecibo = randdt.Next();
+                    r.NumeroDocumento = rand.Next().ToString(CultureInfo.InvariantCulture);
+                    r.Serie = RandomString.NextString(25);
 
                     reembolsos.Add(r);
                 }
@@ -345,7 +356,7 @@ namespace TG001.Data
 
                 Random rand = new Random();
                 RandomDateTime randdt = new RandomDateTime();
-                int tam = rand.Next(1);
+                int tam = rand.Next(2);
                 List<Renegociacao> renegociacoes = new List<Renegociacao>(tam);
 
                 for (int x = 0; x < tam; x++)
@@ -366,19 +377,21 @@ namespace TG001.Data
                         DataEmissao = randdt.Next(),
                         DataPagamento = rand.NextDouble() > 0.5d ? randdt.Next() : (DateTime?)null,
                         DataVencimento = randdt.Next(),
-                        Juros = rand.NextDouble() * rand.Next(),
-                        Multa = rand.NextDouble() * rand.Next(),
+                        Juros = rand.NextDouble() * rand.Next(250),
+                        Multa = rand.NextDouble() * rand.Next(250),
                         Status = ((TipoStatusConta)rand.Next(2)).ToString(),
-                        TipoConta = (int)TipoConta.Boleto,
-                        UsuarioID = context.Users.Find(rand.Next(1, context.Users.Count()).ToString(CultureInfo.InvariantCulture)).Id,
-                        ValorAPagar = rand.NextDouble() * rand.Next(),
-                        ValorDocumento = rand.NextDouble() * rand.Next(),
-                        ContaID = context.Impostos.Find(rand.Next(1, context.Impostos.Count()).ToString(CultureInfo.InvariantCulture)).ID,
+                        TipoConta = (int)TipoConta.Renegociacao,
+                        UsuarioID = context.Users.ToArray()[rand.Next(context.Users.Count())].Id,
+                        ValorAPagar = rand.NextDouble() * rand.Next(250),
+                        ValorDocumento = rand.NextDouble() * rand.Next(250),
+                        ContaID = context.Conta.ToArray()[rand.Next(context.Conta.Count())].ID,
                         DataSolicitacao = randdt.Next(),
                         NovaDataVencimento = randdt.Next(),
-                        NovoValor = rand.NextDouble() * rand.Next(),
+                        NovoValor = rand.NextDouble() * rand.Next(250),
                         QuantidadeParcelas = rand.Next(1, 25),
-                        TipoRenegociacao = RandomString.NextString(15)
+                        TipoRenegociacao = RandomString.NextString(15),
+                        NumeroDocumento = rand.Next().ToString(CultureInfo.InvariantCulture),
+                        Serie = RandomString.NextString(25)
                     });
                 }
 
@@ -456,6 +469,36 @@ namespace TG001.Data
             }
 
             #endregion
+
+            #region Usuarios
+
+            
+            if (!usuarioManager.GetUsersInRoleAsync("Usuario").Result.Any())
+            {
+                Usuario usuario = new Usuario
+                {
+                    EmailConfirmed = true,
+                    Id = "3",
+                    NormalizedUserName = "USUARIO01",
+                    PhoneNumberConfirmed = true,
+                    UserName = "USUARIO01".Normalize(),
+                    Email = "usuario@gmail.com",
+                    LockoutEnabled = false,
+                    NormalizedEmail = "usuario@gmail.com".Normalize(),
+                    PhoneNumber = string.Empty,
+                    TwoFactorEnabled = false,
+                    Matricula = "123351351"
+                };
+                IdentityResult result = usuarioManager.CreateAsync(usuario, "123456").Result;
+
+                if (result.Succeeded)
+                {
+                    usuarioManager.AddToRoleAsync(usuario, "Usuario").Wait();
+                }
+            }
+
+            #endregion
+
         }
 
         private static async Task CreateRoles(IServiceProvider serviceProvider)

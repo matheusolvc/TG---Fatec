@@ -40,7 +40,14 @@ namespace TG001.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Matricula = table.Column<string>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    CPF = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(nullable: true),
+                    CodBanco = table.Column<string>(nullable: true),
+                    Agencia = table.Column<string>(nullable: true),
+                    Conta = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,23 +55,22 @@ namespace TG001.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Colaboradores",
+                name: "ContasMigracao",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CPF = table.Column<string>(nullable: true),
-                    Nome = table.Column<string>(nullable: true),
-                    Matricula = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Senha = table.Column<string>(nullable: true),
-                    CodBanco = table.Column<string>(nullable: true),
-                    Agencia = table.Column<string>(nullable: true),
-                    Conta = table.Column<string>(nullable: true)
+                    DataEmissao = table.Column<DateTime>(nullable: false),
+                    DataVencimento = table.Column<DateTime>(nullable: false),
+                    DataPagamento = table.Column<DateTime>(nullable: false),
+                    Tipo = table.Column<string>(nullable: false),
+                    Valor = table.Column<double>(nullable: false),
+                    Multa = table.Column<double>(nullable: false),
+                    Juros = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Colaboradores", x => x.ID);
+                    table.PrimaryKey("PK_ContasMigracao", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,18 +96,18 @@ namespace TG001.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CNPJ = table.Column<string>(nullable: true),
-                    RazaoSocial = table.Column<string>(nullable: true),
-                    CodBanco = table.Column<string>(nullable: true),
-                    Agencia = table.Column<string>(nullable: true),
-                    Conta = table.Column<string>(nullable: true),
-                    Telefone = table.Column<string>(nullable: true),
+                    CNPJ = table.Column<string>(nullable: false),
+                    RazaoSocial = table.Column<string>(nullable: false),
+                    CodBanco = table.Column<string>(nullable: false),
+                    Agencia = table.Column<string>(nullable: false),
+                    Conta = table.Column<string>(nullable: false),
+                    Telefone = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: true),
-                    Endereco = table.Column<string>(nullable: true),
-                    Numero = table.Column<string>(nullable: true),
-                    Bairro = table.Column<string>(nullable: true),
-                    Cidade = table.Column<string>(nullable: true),
-                    UF = table.Column<string>(nullable: true)
+                    Endereco = table.Column<string>(nullable: false),
+                    Numero = table.Column<string>(nullable: false),
+                    Bairro = table.Column<string>(nullable: false),
+                    Cidade = table.Column<string>(nullable: false),
+                    UF = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -237,21 +243,42 @@ namespace TG001.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DataAlteracao = table.Column<DateTime>(nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: true),
                     DataGeracao = table.Column<DateTime>(nullable: false),
                     ValorTotalLote = table.Column<double>(nullable: false),
-                    StatusTransmissao = table.Column<string>(nullable: true),
-                    UsuarioId = table.Column<string>(nullable: true)
+                    StatusTransmissao = table.Column<string>(nullable: false),
+                    UsuarioID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Lotes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Lotes_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Lotes_AspNetUsers_UsuarioID",
+                        column: x => x.UsuarioID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContasMigracaoMigradas",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ContasMigracaoID = table.Column<int>(nullable: false),
+                    LoteID = table.Column<int>(nullable: false),
+                    DataMigracao = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContasMigracaoMigradas", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ContasMigracaoMigradas_ContasMigracao_ContasMigracaoID",
+                        column: x => x.ContasMigracaoID,
+                        principalTable: "ContasMigracao",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -260,36 +287,38 @@ namespace TG001.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Status = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: false),
                     DataCriacao = table.Column<DateTime>(nullable: false),
                     DataAlteracao = table.Column<DateTime>(nullable: true),
                     DataEmissao = table.Column<DateTime>(nullable: false),
                     DataVencimento = table.Column<DateTime>(nullable: false),
-                    DataPagamento = table.Column<DateTime>(nullable: false),
+                    DataPagamento = table.Column<DateTime>(nullable: true),
                     TipoConta = table.Column<int>(nullable: false),
                     ValorDocumento = table.Column<double>(nullable: false),
                     Multa = table.Column<double>(nullable: false),
                     Juros = table.Column<double>(nullable: false),
                     ValorAPagar = table.Column<double>(nullable: false),
-                    UsuarioId = table.Column<string>(nullable: true),
+                    UsuarioID = table.Column<string>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
                     LoteID = table.Column<int>(nullable: true),
                     LinhaDigitavel = table.Column<string>(nullable: true),
                     FornecedorID = table.Column<int>(nullable: true),
-                    PeriodoApuracao = table.Column<TimeSpan>(nullable: true),
+                    PeriodoApuracaoInicio = table.Column<DateTime>(nullable: true),
+                    PeriodoApuracaoFim = table.Column<DateTime>(nullable: true),
                     CodigoImposto = table.Column<int>(nullable: true),
                     Imposto_LinhaDigitavel = table.Column<string>(nullable: true),
                     CNPJMatriz = table.Column<string>(nullable: true),
                     OutraConta_FornecedorID = table.Column<int>(nullable: true),
                     DataRecibo = table.Column<DateTime>(nullable: true),
                     Descricao = table.Column<string>(nullable: true),
-                    ColaboradorID = table.Column<int>(nullable: true),
+                    ColaboradorID = table.Column<string>(nullable: true),
                     DataSolicitacao = table.Column<DateTime>(nullable: true),
                     TipoRenegociacao = table.Column<string>(nullable: true),
                     QuantidadeParcelas = table.Column<int>(nullable: true),
                     NovaDataVencimento = table.Column<DateTime>(nullable: true),
                     NovoValor = table.Column<double>(nullable: true),
-                    Observacao = table.Column<string>(nullable: true)
+                    Observacao = table.Column<string>(nullable: true),
+                    ContaID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -299,7 +328,7 @@ namespace TG001.Migrations
                         column: x => x.FornecedorID,
                         principalTable: "Fornecedores",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Conta_Lotes_LoteID",
                         column: x => x.LoteID,
@@ -307,8 +336,8 @@ namespace TG001.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Conta_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Conta_AspNetUsers_UsuarioID",
+                        column: x => x.UsuarioID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -317,13 +346,19 @@ namespace TG001.Migrations
                         column: x => x.OutraConta_FornecedorID,
                         principalTable: "Fornecedores",
                         principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Conta_AspNetUsers_ColaboradorID",
+                        column: x => x.ColaboradorID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Conta_Colaboradores_ColaboradorID",
-                        column: x => x.ColaboradorID,
-                        principalTable: "Colaboradores",
+                        name: "FK_Conta_Conta_ContaID",
+                        column: x => x.ContaID,
+                        principalTable: "Conta",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -332,9 +367,9 @@ namespace TG001.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StatusTransmissao = table.Column<string>(nullable: true),
+                    StatusTransmissao = table.Column<string>(nullable: false),
                     Mensagem = table.Column<string>(nullable: true),
-                    LoteID = table.Column<int>(nullable: true)
+                    LoteID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -344,10 +379,8 @@ namespace TG001.Migrations
                         column: x => x.LoteID,
                         principalTable: "Lotes",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-           
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -397,9 +430,9 @@ namespace TG001.Migrations
                 column: "LoteID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Conta_UsuarioId",
+                name: "IX_Conta_UsuarioID",
                 table: "Conta",
-                column: "UsuarioId");
+                column: "UsuarioID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Conta_OutraConta_FornecedorID",
@@ -410,6 +443,16 @@ namespace TG001.Migrations
                 name: "IX_Conta_ColaboradorID",
                 table: "Conta",
                 column: "ColaboradorID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conta_ContaID",
+                table: "Conta",
+                column: "ContaID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasMigracaoMigradas_ContasMigracaoID",
+                table: "ContasMigracaoMigradas",
+                column: "ContasMigracaoID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
@@ -423,9 +466,9 @@ namespace TG001.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lotes_UsuarioId",
+                name: "IX_Lotes_UsuarioID",
                 table: "Lotes",
-                column: "UsuarioId");
+                column: "UsuarioID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
@@ -464,6 +507,9 @@ namespace TG001.Migrations
                 name: "Conta");
 
             migrationBuilder.DropTable(
+                name: "ContasMigracaoMigradas");
+
+            migrationBuilder.DropTable(
                 name: "DeviceCodes");
 
             migrationBuilder.DropTable(
@@ -479,7 +525,7 @@ namespace TG001.Migrations
                 name: "Fornecedores");
 
             migrationBuilder.DropTable(
-                name: "Colaboradores");
+                name: "ContasMigracao");
 
             migrationBuilder.DropTable(
                 name: "Lotes");
