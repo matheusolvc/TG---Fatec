@@ -46,7 +46,7 @@ export class FornecedorService {
 				`Backend retornou o código ${error.status}, ` +
 				`o corpo era: ${error.error}`);
 		}
-		alert(error.error);
+		console.error(error.error);
 		
 		return throwError(
 			'Algo aconteceu. Tente novamente mais tarde');

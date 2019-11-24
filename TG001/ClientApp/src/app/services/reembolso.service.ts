@@ -48,7 +48,7 @@ export class ReembolsoService {
 				`Backend retornou o código ${error.status}, ` +
 				`body: ${error.error}`);
 		}
-		alert(error.error);
+		console.error(error.error);
 		
 		return throwError(
 			'Algo aconteceu. Tente novamente mais tarde');
