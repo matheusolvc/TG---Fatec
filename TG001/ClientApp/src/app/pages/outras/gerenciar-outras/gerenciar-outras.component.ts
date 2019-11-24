@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Outra } from '../../../Classes/Contas/Outra';
+import { OutraConta } from '../../../Classes/Contas/OutraConta';
 
 @Component({
   selector: 'app-gerenciar-outras',
@@ -12,7 +12,7 @@ export class GerenciarOutrasComponent implements OnInit {
   constructor(httpClient: HttpClient) {
     this.http = httpClient;
   }
-  private model = new Outra();
+  private model = new OutraConta();
   private http: HttpClient;
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class GerenciarOutrasComponent implements OnInit {
   }
   Incluir() {
     this.http.post(window.location.origin + '/api/OutrasContas', JSON.stringify(this.model), httpOptions)
-      .subscribe((data: Outra) => this.model = { ...data }), error => console.error(error);
+      .subscribe((data: OutraConta) => this.model = { ...data }), error => console.error(error);
   }
 }
 const httpOptions = {

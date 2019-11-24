@@ -1,91 +1,93 @@
-<form #GerenciarImpostos="ngForm">
+<h3>{{title}} de Impostos</h3>
+
+<form [formGroup]="impostoForm" (ngSubmit)="Confirmar()" #formDir="ngForm" novalidate>
   <mat-card class="imposto-card">
     <div class="example-container">
       <div class="row">
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="ID da Conta" id="ID" [(ngModel)]="model.ID" name="ID" disabled>
+          <input matInput placeholder="ID da Conta" id="ID" formControlName="ID">
         </mat-form-field>
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="Status" id="Status" [(ngModel)]="model.Status" name="Status">
+          <input matInput placeholder="Status" id="Status" formControlName="Status">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="CNPJ" id="CNPJ" [(ngModel)]="model.CNPJ" name="CNPJ" required>
+          <input matInput placeholder="CNPJ Matriz" id="CNPJMatriz" formControlName="CNPJMatriz">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-4">
-          <input matInput placeholder="Período de apuração" id="PeriodoApuracao" [(ngModel)]="model.PeriodoApuracao"
-            name="PeriodoApuracao">
+          <input matInput [matDatepicker]="pickerAPINI" placeholder="Período de Apuração" formControlName="PeriodoApuracaoInicio" required (input)="ValidarData()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <input matInput [matDatepicker]="pickerAPFIM" placeholder="Período de Apuração" formControlName="PeriodoApuracaoFim" required (input)="ValidarData()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="row">
         <mat-form-field class="col-md-8">
-          <input matInput placeholder="Código do imposto" id="CodigoImposto" [(ngModel)]="model.CodigoImposto"
-            name="CodigoImposto">
+          <input matInput placeholder="Código do imposto" formControlName="CodigoImposto" name="CodigoImposto">
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="Nº Documento - Não ta no modelo">
+          <input matInput placeholder="Nº Documento" formControlName="NumeroDocumento">
         </mat-form-field>
         <mat-form-field class="col-md-6">
-          <input matInput placeholder="Série - Não ta no Modelo">
+          <input matInput placeholder="Série" formControlName="Serie">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão" id="DataEmissao"
-            [(ngModel)]="model.DataEmissao" name="DataEmissao">
+          <input matInput [matDatepicker]="pickerEm" placeholder="Data de emissão" formControlName="DataEmissao">
           <mat-datepicker-toggle matSuffix [for]="pickerEm"></mat-datepicker-toggle>
           <mat-datepicker #pickerEm></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="col-md-4">
-          <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento" id="DataVencimento"
-            [(ngModel)]="model.DataVencimento" name="DataVencimento">
+          <input matInput [matDatepicker]="pickerVc" placeholder="Data de vencimento" formControlName="DataVencimento">
           <mat-datepicker-toggle matSuffix [for]="pickerVc"></mat-datepicker-toggle>
           <mat-datepicker #pickerVc></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Tipo do documento" id="TipoConta" [(ngModel)]="model.TipoConta" name="TipoConta"
-            required>
+          <input matInput placeholder="Tipo do documento" formControlName="TipoConta" required>
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Valor do documento" id="ValorDocumento" [(ngModel)]="model.ValorDocumento"
-            name="ValorDocumento" required #valDoc="ngModel">
-          <mat-error *ngIf="valDoc.invalid && valDoc.touched">O valor é obrigatório</mat-error>
+          <input matInput placeholder="Valor do documento" formControlName="ValorDocumento">
         </mat-form-field>
 
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Multa" id="Multa" [(ngModel)]="model.Multa" name="Multa">
-
+          <input matInput placeholder="Multa" formControlName="Multa">
         </mat-form-field>
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Juros" id="Juros" [(ngModel)]="model.Juros" name="Juros">
+          <input matInput placeholder="Juros" formControlName="Juros">
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input matInput placeholder="Valor a pagar" id="ValorAPagar" [(ngModel)]="model.ValorAPagar"
-            name="ValorAPagar">
+          <input matInput placeholder="Valor a pagar" formControlName="ValorAPagar">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="col-md-12">
-          <input matInput placeholder="Código de barras" id="LinhaDigitavel" [(ngModel)]="model.LinhaDigitavel"
-            name="LinhaDigitavel">
+          <input matInput placeholder="Código de barras" formControlName="LinhaDigitavel" >
         </mat-form-field>
       </div>
     </div>
     <div class="div-button">
       <button mat-raised-button (click)="Voltar()">Voltar</button>
       <button class="cancel" mat-raised-button type="reset">Cancelar</button>
-      <button class="confirm" mat-raised-button type="submit" [disabled]="!GerenciarImpostos.valid"
-        (click)="Incluir()">Confirmar</button>
+      <button class="confirm" mat-raised-button type="submit">
+        Confirmar
+      </button>
     </div>
   </mat-card>
 </form>
