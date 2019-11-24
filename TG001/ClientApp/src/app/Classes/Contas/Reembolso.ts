@@ -17,6 +17,8 @@ export class Reembolso extends Conta {
 		public Multa?: number,
 		public Juros?: number,
 		public ValorAPagar?: number,
+		public NumeroDocumento?: string,
+		public Serie?: string,
 		public UsuarioID?: string,
 		public Usuario?: Usuario,
 
@@ -26,6 +28,6 @@ export class Reembolso extends Conta {
 		public ColaboradorID?: string,
 		public Colaborador?: Colaborador
 	) {
-		super(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario);
+		super(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario);
 	}
 }

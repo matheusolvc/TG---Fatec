@@ -14,14 +14,15 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Conta_1 = require("./Conta");
-var Boleto = /** @class */ (function (_super) {
-    __extends(Boleto, _super);
-    function Boleto(
+var OutraConta = /** @class */ (function (_super) {
+    __extends(OutraConta, _super);
+    function OutraConta(
     //Conta
-    Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, Usuario, 
-    //Boleto
-    ID, IDFornecedor, CNPJ, RazaoSocial, NumDocumento, LinhaDigitavel) {
-        var _this = _super.call(this) || this;
+    ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario, 
+    //Outra Conta
+    FornecedorID, Fornecedor) {
+        var _this = _super.call(this, ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario) || this;
+        _this.ID = ID;
         _this.Status = Status;
         _this.DataCriacao = DataCriacao;
         _this.DataAlteracao = DataAlteracao;
@@ -33,16 +34,15 @@ var Boleto = /** @class */ (function (_super) {
         _this.Multa = Multa;
         _this.Juros = Juros;
         _this.ValorAPagar = ValorAPagar;
+        _this.NumeroDocumento = NumeroDocumento;
+        _this.Serie = Serie;
+        _this.UsuarioID = UsuarioID;
         _this.Usuario = Usuario;
-        _this.ID = ID;
-        _this.IDFornecedor = IDFornecedor;
-        _this.CNPJ = CNPJ;
-        _this.RazaoSocial = RazaoSocial;
-        _this.NumDocumento = NumDocumento;
-        _this.LinhaDigitavel = LinhaDigitavel;
+        _this.FornecedorID = FornecedorID;
+        _this.Fornecedor = Fornecedor;
         return _this;
     }
-    return Boleto;
+    return OutraConta;
 }(Conta_1.Conta));
-exports.Boleto = Boleto;
-//# sourceMappingURL=Boleto.js.map
+exports.OutraConta = OutraConta;
+//# sourceMappingURL=OutraConta.js.map

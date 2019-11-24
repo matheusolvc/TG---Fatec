@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Conta = /** @class */ (function () {
-    function Conta(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario) {
+    function Conta(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario) {
         this.ID = ID;
         this.Status = Status;
         this.DataCriacao = DataCriacao;
@@ -14,6 +14,8 @@ var Conta = /** @class */ (function () {
         this.Multa = Multa;
         this.Juros = Juros;
         this.ValorAPagar = ValorAPagar;
+        this.NumeroDocumento = NumeroDocumento;
+        this.Serie = Serie;
         this.UsuarioID = UsuarioID;
         this.Usuario = Usuario;
     }

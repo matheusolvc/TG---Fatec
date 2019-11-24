@@ -16,6 +16,8 @@ export class Renegociacao extends Conta {
 		public Juros?: number,
 		public ValorAPagar?: number,
 		public UsuarioID?: string,
+		public NumeroDocumento?: string,
+		public Serie?: string,
 		public Usuario?: Usuario,
 
 
@@ -28,7 +30,7 @@ export class Renegociacao extends Conta {
 		public ContaID?: number,
 		public ContaRenegociada?: Conta
 	) {
-        super()
+		super(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario);
 	}
 }
 

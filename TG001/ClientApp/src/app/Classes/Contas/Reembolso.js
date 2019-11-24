@@ -16,8 +16,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Conta_1 = require("./Conta");
 var Reembolso = /** @class */ (function (_super) {
     __extends(Reembolso, _super);
-    function Reembolso(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario, DataRecibo, Descricao, ColaboradorID, Colaborador) {
-        var _this = _super.call(this, ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario) || this;
+    function Reembolso(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario, DataRecibo, Descricao, ColaboradorID, Colaborador) {
+        var _this = _super.call(this, ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario) || this;
         _this.ID = ID;
         _this.Status = Status;
         _this.DataCriacao = DataCriacao;
@@ -30,6 +30,8 @@ var Reembolso = /** @class */ (function (_super) {
         _this.Multa = Multa;
         _this.Juros = Juros;
         _this.ValorAPagar = ValorAPagar;
+        _this.NumeroDocumento = NumeroDocumento;
+        _this.Serie = Serie;
         _this.UsuarioID = UsuarioID;
         _this.Usuario = Usuario;
         _this.DataRecibo = DataRecibo;

@@ -16,6 +16,9 @@ export class Conta {
 		public Multa?: number,
 		public Juros?: number,
 		public ValorAPagar?: number,
+		public NumeroDocumento?: string,
+		public Serie?: string,
+
 		public UsuarioID?: string,
 		public Usuario?: Usuario
 	) { }

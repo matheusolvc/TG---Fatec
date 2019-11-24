@@ -16,8 +16,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Conta_1 = require("./Conta");
 var Imposto = /** @class */ (function (_super) {
     __extends(Imposto, _super);
-    function Imposto(Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, Usuario, LinhaDigitavel, CNPJMatriz, ID, CodigoImposto, PeriodoApuracao) {
-        var _this = _super.call(this) || this;
+    function Imposto(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario, PeriodoApuracaoInicio, PeriodoApuracaoFim, CodigoImposto, LinhaDigitavel, CNPJMatriz) {
+        var _this = _super.call(this, ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario) || this;
+        _this.ID = ID;
         _this.Status = Status;
         _this.DataCriacao = DataCriacao;
         _this.DataAlteracao = DataAlteracao;
@@ -29,14 +30,16 @@ var Imposto = /** @class */ (function (_super) {
         _this.Multa = Multa;
         _this.Juros = Juros;
         _this.ValorAPagar = ValorAPagar;
+        _this.NumeroDocumento = NumeroDocumento;
+        _this.Serie = Serie;
+        _this.UsuarioID = UsuarioID;
         _this.Usuario = Usuario;
+        _this.PeriodoApuracaoInicio = PeriodoApuracaoInicio;
+        _this.PeriodoApuracaoFim = PeriodoApuracaoFim;
+        _this.CodigoImposto = CodigoImposto;
         _this.LinhaDigitavel = LinhaDigitavel;
         _this.CNPJMatriz = CNPJMatriz;
-        _this.ID = ID;
-        _this.CodigoImposto = CodigoImposto;
-        _this.PeriodoApuracao = PeriodoApuracao;
         return _this;
-        //super();
     }
     return Imposto;
 }(Conta_1.Conta));

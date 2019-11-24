@@ -1,7 +1,5 @@
 import { BaseUsuario } from "./BaseUsuario";
 
-
-
 export class Usuario extends BaseUsuario {
 	constructor(
 		public SecurityStamp?: string,

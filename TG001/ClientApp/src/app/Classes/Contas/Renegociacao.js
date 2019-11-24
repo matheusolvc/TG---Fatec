@@ -16,8 +16,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Conta_1 = require("./Conta");
 var Renegociacao = /** @class */ (function (_super) {
     __extends(Renegociacao, _super);
-    function Renegociacao(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, Usuario, DataSolicitacao, TipoRenegociacao, QuantidadeParcelas, NovaDataVencimento, NovoValor, Observacao, ContaID, ContaRenegociada) {
-        var _this = _super.call(this) || this;
+    function Renegociacao(ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, UsuarioID, NumeroDocumento, Serie, Usuario, DataSolicitacao, TipoRenegociacao, QuantidadeParcelas, NovaDataVencimento, NovoValor, Observacao, ContaID, ContaRenegociada) {
+        var _this = _super.call(this, ID, Status, DataCriacao, DataAlteracao, DataEmissao, DataVencimento, DataPagamento, TipoConta, ValorDocumento, Multa, Juros, ValorAPagar, NumeroDocumento, Serie, UsuarioID, Usuario) || this;
         _this.ID = ID;
         _this.Status = Status;
         _this.DataCriacao = DataCriacao;
@@ -31,6 +31,8 @@ var Renegociacao = /** @class */ (function (_super) {
         _this.Juros = Juros;
         _this.ValorAPagar = ValorAPagar;
         _this.UsuarioID = UsuarioID;
+        _this.NumeroDocumento = NumeroDocumento;
+        _this.Serie = Serie;
         _this.Usuario = Usuario;
         _this.DataSolicitacao = DataSolicitacao;
         _this.TipoRenegociacao = TipoRenegociacao;

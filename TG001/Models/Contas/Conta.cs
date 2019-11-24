@@ -43,6 +43,13 @@ namespace TG001.Models
         [ForeignKey("Usuario")]
         public string UsuarioID { get; set; }
 
+        [Required]
+        public string NumeroDocumento { get; set; }
+
+        [Required]
+        public string Serie { get; set; }
+
+
         public virtual Usuario Usuario { get; set; }
     }
 }
