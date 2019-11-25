@@ -3,7 +3,7 @@ import { OutraConta } from '../../../Classes/Contas/OutraConta';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OutrasContasService } from '../../../services/outras-contas.service';
-import { FornecedorService } from '../../../services/fornecedor.service
+import { FornecedorService } from '../../../services/fornecedor.service;
 
 @Component({
   selector: 'app-gerenciar-outras',
