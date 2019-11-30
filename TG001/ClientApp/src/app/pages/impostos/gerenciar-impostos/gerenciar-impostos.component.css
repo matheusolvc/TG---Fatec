@@ -1,4 +1,4 @@
-.div-button{
+.div-button {
     width: 25%;
     display: flex;
     align-items: center;
@@ -6,12 +6,21 @@
     justify-content: space-between;
 }
 
-.cancel{
- background-color: red;
- color: whitesmoke;
+.cancel {
+    background-color: red;
+    color: whitesmoke;
 }
 
-.confirm{
+.confirm {
     background-color: green;
     color: whitesmoke;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    margin-bottom: 10px;
+    cursor: pointer;
 }

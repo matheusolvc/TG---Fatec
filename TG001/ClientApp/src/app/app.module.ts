@@ -54,6 +54,7 @@ import { RetornoLoteService } from './services/retorno-lote.service';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { getPTBRPaginatorIntl } from './utils/ptBR-paginator-intl';
+import { TelaConsultaComponent } from './pages/tela-consulta/tela-consulta.component';
 
 registerLocaleData(localePt);
 
@@ -80,7 +81,8 @@ registerLocaleData(localePt);
 		TelaReembolsoComponent,
 		AprovarReembolsoComponent,
 		SolicitarReembolsoComponent,
-		MinhasSolicitacoesComponent
+		MinhasSolicitacoesComponent,
+		TelaConsultaComponent
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

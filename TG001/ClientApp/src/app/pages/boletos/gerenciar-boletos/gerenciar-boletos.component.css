@@ -1,21 +1,44 @@
-.boleto-card{
-    margin: 10px;
+.boleto-card {
+  margin: 10px;
 }
 
 .example-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .example-container > * {
-    width: 100%;
-  }
-
-  .example-fill-remaining-space {
-    flex: 1 1 auto;
-  }
-
-button {
-  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
 }
-  
+
+.example-container>* {
+  width: 100%;
+}
+
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+
+.div-button {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.cancel {
+  background-color: red;
+  color: whitesmoke;
+}
+
+.confirm {
+  background-color: green;
+  color: whitesmoke;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar{
+  margin-bottom: 10px;
+  cursor: pointer;
+}

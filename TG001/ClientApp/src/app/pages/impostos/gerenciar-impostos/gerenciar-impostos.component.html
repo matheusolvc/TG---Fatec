@@ -1,7 +1,14 @@
-<h3>{{title}} de Impostos</h3>
+
 
 <form [formGroup]="impostoForm" (ngSubmit)="Confirmar()" #formDir="ngForm" novalidate>
   <mat-card class="imposto-card">
+      <mat-toolbar>
+          <mat-toolbar-row>
+              <mat-icon (click)="Voltar()">keyboard_arrow_left</mat-icon> Voltar
+              <span class="example-spacer"></span>
+            <h3>{{title}} de Impostos</h3>
+          </mat-toolbar-row>
+        </mat-toolbar>
     <div class="example-container">
       <div class="row">
         <mat-form-field class="col-md-6">
@@ -83,7 +90,6 @@
       </div>
     </div>
     <div class="div-button">
-      <button mat-raised-button (click)="Voltar()">Voltar</button>
       <button class="cancel" mat-raised-button type="reset">Cancelar</button>
       <button class="confirm" mat-raised-button type="submit">
         Confirmar

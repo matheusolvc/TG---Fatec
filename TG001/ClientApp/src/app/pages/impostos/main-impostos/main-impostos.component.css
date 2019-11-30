@@ -25,3 +25,13 @@ table {
   font-size: 14px;
   padding-top: 15px;
 }
+
+.example-icon {
+  padding: 0 20px 0 10px;
+  cursor: pointer;
+  font-size: 26px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

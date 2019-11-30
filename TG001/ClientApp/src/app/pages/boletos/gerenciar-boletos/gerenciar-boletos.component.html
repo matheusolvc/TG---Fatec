@@ -1,7 +1,12 @@
-<h3>{{title}} de Boleto</h3>
-
 <form [formGroup]="boletoForm" (ngSubmit)="Confirmar()" #formDir="ngForm" novalidate>
   <mat-card class="boleto-card">
+    <mat-toolbar>
+      <mat-toolbar-row>
+          <mat-icon (click)="Voltar()">keyboard_arrow_left</mat-icon> Voltar
+          <span class="example-spacer"></span>
+        <h3>{{title}} de Boleto</h3>
+      </mat-toolbar-row>
+    </mat-toolbar>
     <div class="example-container">
       <div class="row">
         <mat-form-field class="col-md-6">
@@ -13,11 +18,12 @@
       </div>
       <div class="row">
         <mat-form-field class="col-md-3">
-          <input #IDFornecedor matInput placeholder="ID Fornecedor" formControlName="FornecedorID" (blur)="CarregarFornecedor()">
+          <input #IDFornecedor matInput placeholder="ID Fornecedor" formControlName="FornecedorID"
+            (blur)="CarregarFornecedor()">
         </mat-form-field>
       </div>
-      <div class="row"  formGroupName="Fornecedor">
-        <mat-form-field class="col-md-4"  >
+      <div class="row" formGroupName="Fornecedor">
+        <mat-form-field class="col-md-4">
           <input matInput placeholder="CNPJ" formControlName="CNPJ">
         </mat-form-field>
         <mat-form-field class="col-md-8">
@@ -68,7 +74,8 @@
       </div>
     </div>
   </mat-card>
-  <button mat-raised-button type="submit">Confirmar</button>
-  <button mat-raised-button type="button" (click)="Resetar()">Cancelar</button>
-  <button mat-raised-button type="button" (click)="Voltar()">Voltar</button>
+  <div class="div-button">
+    <button class="confirm" mat-raised-button type="submit">Confirmar</button>
+    <button class="cancel" mat-raised-button type="button" (click)="Resetar()">Cancelar</button>
+  </div>
 </form>
