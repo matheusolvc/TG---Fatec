@@ -76,6 +76,7 @@
     <None Remove="ClientApp\src\app\services\reembolso.service.ts" />
     <None Remove="ClientApp\src\app\services\renegociacoes.service.ts" />
     <None Remove="ClientApp\src\app\services\retorno-lote.service.ts" />
+    <None Remove="ClientApp\src\app\services\usuarios.service.ts" />
     <None Remove="ClientApp\src\app\utils\app-constants.ts" />
     <None Remove="ClientApp\src\app\utils\ptBR-paginator-intl.ts" />
   </ItemGroup>
@@ -95,6 +96,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\Classes\Lote.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Classes\RetornoLote.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Classes\Usuario.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\usuarios.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\contas-migracao.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\contas-migracao-migradas.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\imposto.service.ts" />

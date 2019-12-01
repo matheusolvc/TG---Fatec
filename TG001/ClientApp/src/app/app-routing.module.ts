@@ -15,6 +15,9 @@ import { TelaReembolsoComponent } from './pages/tela-reembolso/tela-reembolso.co
 import { MinhasSolicitacoesComponent } from './pages/minhas-solicitacoes/minhas-solicitacoes.component';
 import { AprovarReembolsoComponent } from './pages/aprovar-reembolso/aprovar-reembolso.component';
 import { SolicitarReembolsoComponent } from './pages/solicitar-reembolso/solicitar-reembolso.component';
+import { ConsultaFornecedorComponent } from './pages/consultas/consulta-fornecedor/consulta-fornecedor.component';
+import { ConsultaUsuarioComponent } from './pages/consultas/consulta-usuario/consulta-usuario.component';
+import { TelaConsultaComponent } from './pages/tela-consulta/tela-consulta.component';
 
 
 const routes: Routes = [
@@ -34,8 +37,12 @@ const routes: Routes = [
 	{ path: 'reembolsos/aprovar', component: AprovarReembolsoComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'reembolsos/solicitar', component: SolicitarReembolsoComponent, canActivate: [AuthorizeGuard] },
 	{ path: 'pagar-contas', component: PagarContasComponent, canActivate: [AuthorizeGuard] },
-	{ path: '', redirectTo:'authentication/login?returnurl=contas',pathMatch:'full' },
-	//{ path: '', component: NavMenuComponent, canActivate: [AuthorizeGuard] }
+	//{ path: '', redirectTo: 'authentication/login?returnurl=/contas', pathMatch: 'full' },
+	//{ path: 'logout', redirectTo: 'authentication/logout', pathMatch: 'full' },
+	//{ path: 'consultas', component: ConsultasComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'consulta', component: TelaConsultaComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'consulta/fornecedor', component: ConsultaFornecedorComponent, canActivate: [AuthorizeGuard] },
+	{ path: 'consulta/usuarios', component: ConsultaUsuarioComponent, canActivate: [AuthorizeGuard] }
 ];
 
 @NgModule({

@@ -44,6 +44,8 @@ namespace TG001.Data
         public DbSet<ContasMigracao> ContasMigracao { get; set; }
         public DbSet<ContasMigracaoMigradas> ContasMigracaoMigradas { get; set; }
 
+        public DbSet<Usuario> Usuarios { get; set; }
+
         public DbSet<Conta> Conta { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -58,6 +60,9 @@ namespace TG001.Data
         }
     }
 
+    #region Inicialização de DB
+
+    
     public static class ApplicationDBInitializer
     {
         public static void SeedDatabase(UserManager<Usuario> userManager, UserManager<Colaborador> colaboradorManager, ContasAPagarContext context, IServiceProvider serviceProvider)
@@ -517,4 +522,5 @@ namespace TG001.Data
             }
         }
     }
+    #endregion
 }

@@ -55,6 +55,9 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { getPTBRPaginatorIntl } from './utils/ptBR-paginator-intl';
 import { TelaConsultaComponent } from './pages/tela-consulta/tela-consulta.component';
+import { UsuarioService } from './services/usuarios.service';
+import { ConsultaFornecedorComponent } from './pages/consultas/consulta-fornecedor/consulta-fornecedor.component';
+import { ConsultaUsuarioComponent } from './pages/consultas/consulta-usuario/consulta-usuario.component';
 
 registerLocaleData(localePt);
 
@@ -82,7 +85,9 @@ registerLocaleData(localePt);
 		AprovarReembolsoComponent,
 		SolicitarReembolsoComponent,
 		MinhasSolicitacoesComponent,
-		TelaConsultaComponent
+		TelaConsultaComponent,
+		ConsultaFornecedorComponent,
+		ConsultaUsuarioComponent
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -127,7 +132,8 @@ registerLocaleData(localePt);
 		OutrasContasService,
 		ReembolsoService,
 		RenegociacoesService,
-		RetornoLoteService
+		RetornoLoteService,
+		UsuarioService
 	],
 	bootstrap: [AppComponent]
 })
